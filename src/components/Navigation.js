@@ -5,57 +5,50 @@ import Aboutus from './Aboutus';
 import Home from './Home';
 
 const Navigation = () => {
-    return (
+return (
 
-        <>
-            {/* <Navbar bg="dark" variant="dark" expand="lg" style={{height:"100px"}}>
-                <Container>
-                    <Navbar.Brand as={Link} to="/">Auction</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto fs-5">
-                            <Nav.Link as={Link} to="/">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
-                            <Nav.Link as={Link} to="/services">Services</Nav.Link>
-                            <Nav.Link as={Link} to="/products">Products</Nav.Link>
-                            <Nav.Link as={Link} to="/createauction">Create Auction</Nav.Link>
-                            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                            <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
-                            <Nav.Link as={Link} to="/register">Register</Nav.Link>
-                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                            <Nav.Link as={Link} to="/wallet">wallet</Nav.Link>
-
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar> */}
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+<>
+  <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <div className="container-fluid">
-      <Link className="navbar-brand" to="/">Home</Link>
-      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
+      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <i className="fas fa-bars"></i>
       </button>
-      <div className="collapse navbar-collapse ms-auto" id="navbarNav">
-        <ul className="navbar-nav ms-auto">
-          {/* {(!isLogin || pathname=='/sign-in' || pathname=='/sign-up') &&<> */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/sign-in">Login</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/sign-up">Signup</Link>
-            </li>
-            {/* </> */}
-          {/* } */}
-          {/* {(isLogin && pathname!=='/sign-in' && pathname!=='/sign-up') &&(<li className="nav-item">
-            <Link className="nav-link" to="/sign-up" onClick={()=>handleLogout()}>Logout</Link>
-          </li>)} */}
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a className="navbar-brand" href="#"> Auction </a>
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item">
+            {/*<a className="nav-link active" aria-current="page" href="#">Home</a>*/}
+            <Link className='nav-link active' to="/"> Home </Link>
+          </li>
+          <li className="nav-item">
+            <Link className='nav-link active' to="/aboutus"> About us </Link>
+          </li>
+          <li className="nav-item">
+            <Link className='nav-link active' to="/createauction"> Create Auction </Link>
+          </li>
+          <li className="nav-item">
+            <Link className='nav-link active' to="/login"> Login </Link>
+          </li>
+          <li className="nav-item">
+            <Link className='nav-link active' to="/register"> Registration </Link>
+          </li>
+          <li className="nav-item">
+            <Link className='nav-link active' to="/wallet"> Wallet </Link>
+          </li>
         </ul>
+        <form className="d-flex input-group w-auto">
+          <input type="search" className="form-control" placeholder="Enter category" aria-label="Search" />
+          <button className="btn btn-light btn-outline-dark" type="button" data-mdb-ripple-color="dark">
+            Search
+          </button>
+        </form>
       </div>
     </div>
-    </nav>
-        </>
+  </nav>
+</>
 
-    )
+)
 }
 
 export default Navigation
