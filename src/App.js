@@ -13,6 +13,8 @@ import Login from './components/Login';
 import Contactus from './components/Contactus';
 import Wallet from './components/Wallet';
 import { BidPage } from './components/BidPage';
+import Forgotpassword from './components/Forgotpassword';
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/contactus' element={<Contactus/>} />
         <Route path='/wallet' element={<Wallet/>} />
+        <Route path='/forgotpassword' element={<Forgotpassword/>} />
       </Routes>
     </Router>
   );
