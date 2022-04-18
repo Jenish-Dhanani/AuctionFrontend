@@ -3,7 +3,6 @@ function Forgotpassword() {
 
     const [values, setValues] = useState({email:""})
     const [errors, setErrors] = useState({})
-    const [dataIsCorrect, setDataIsCorrect] = useState(false)
 
     const handleChange = (event)=>{
         setValues({
@@ -25,23 +24,25 @@ function Forgotpassword() {
     function handleSubmit(event){
         event.preventDefault()
         setErrors(validateForm(values))
-        setDataIsCorrect(true)
-    }
-    useEffect(()=>{
-        if(Object.keys(errors).length ===0 && dataIsCorrect){
+        let errs = validateForm(values)
+        setErrors(errs)
+
+        // setDataIsCorrect(true)
+        if(Object.keys(errs).length ===0 ){
 
             let data = {
                 email:values.email
             }
+            console.log(data)
         }
-    },[errors])
 
+    }
 
   return (
     <div className='container'>
         <div className="w-100 d-flex justify-content-center p-5">
-            <div className="col-lg-5 col-md-10 d-flex flex-column justify-content-center align-items-center shadow p-5">
-                <img src="https://usa.afsglobal.org/SSO/SelfPasswordRecovery/images/send_reset_password.svg?v=3" alt="" srcset="" />
+            <div className="col-lg-6 col-md-10 d-flex flex-column justify-content-center align-items-center shadow p-5">
+                <img src="https://usa.afsglobal.org/SSO/SelfPasswordRecovery/images/send_reset_password.svg?v=3" alt="" />
                 <h1 className="mt-3">Forgot Password?</h1>
                 <p>You can reset password here.</p>
                 <form onSubmit={handleSubmit} name="forgotpassword" className="w-100">

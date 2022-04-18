@@ -8,12 +8,14 @@ import Services from './components/Services';
 import Products from './components/Products';
 import CreateAuction from './components/CreateAuction';
 import Profile from './components/Profile';
+import UserProfile from './components/UserProfile';
 import Register from './components/Register';
 import Login from './components/Login';
 import Contactus from './components/Contactus';
 import Wallet from './components/Wallet';
 import { BidPage } from './components/BidPage';
 import Forgotpassword from './components/Forgotpassword';
+import VerifyForgotToken from './components/VerifyForgotToken'
 
 
 function App() {
@@ -26,12 +28,14 @@ function App() {
         <Route path='/products' element={<Products countdownTimestampMs={1659983662000}/>} />
         <Route path='/product/:id' exact element={<BidPage />} />
         <Route path='/createauction' element={<CreateAuction/>} />
-        <Route path='/profile' element={<Profile/>} />
+        {/* <Route path='/profile' element={<Profile/>} /> */}
+        <Route path='/profile' element={<UserProfile/>}/>
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/contactus' element={<Contactus/>} />
         <Route path='/wallet' element={<Wallet/>} />
         <Route path='/forgotpassword' element={<Forgotpassword/>} />
+        <Route path='/verify/:token' element={<VerifyForgotToken/>} />
       </Routes>
     </Router>
   );
