@@ -81,7 +81,7 @@ const Register = () => {
                 address: values.address
             }
 
-            
+
         }
     }, [errors])
 
@@ -99,8 +99,8 @@ const Register = () => {
             err.email = "Email is invalid"
         }
 
-        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$/.test(values.password)) {
-            err.password = `At least 1 Uppercase. At least 1 Lowercase. At least 1 Number. Min 8 chars and Max 12 chars`
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$/.test(values.password)) {
+            err.password = `At least 1 Uppercase. At least 1 Lowercase. At least 1 Number. Min 8 chars and Max 20 chars`
         }
 
         if (!values.password) {
