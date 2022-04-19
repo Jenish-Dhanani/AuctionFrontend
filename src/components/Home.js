@@ -5,6 +5,7 @@ import { ItemSlider } from "./ItemSlider";
 import Wallet from "./Wallet";
 import Header from "./Header";
 import Footer from "./Footer"
+import Testimonials from './Testimonials/Testimonials';
 
 
 
@@ -44,6 +45,7 @@ const Home = () => {
         Daily Auctions
       </h1>
       <CardGroup products={cardGroups}/>
+      <Testimonials/>
       <Footer/>
     </div>
   )
