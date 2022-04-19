@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import Navigation from './Navigation';
 
 const CreateAuction = () => {
-
+    var id=sessionStorage.getItem("user");
     const [image1, setImage1] = useState([]);
     const [image2, setImage2] = useState([]);
     const [image3, setImage3] = useState([]);
@@ -27,9 +27,9 @@ const CreateAuction = () => {
         if (!values.title) {
             err.title = "Title is required."
         }
-        if (!values.category) {
-            err.category = "Category is required."
-        }
+        // if (!values.category) {
+        //     err.category = "Category is required."
+        // }
 
         if (!values.price) {
             err.price = "Price is required."
@@ -50,31 +50,51 @@ const CreateAuction = () => {
         if (!values.enddate) {
             err.enddate = "End date is required."
         }
-        if(image1.length===0){
-            err.image1 = "Front Image is required."
-        }
+        // if(image1.length===0){
+        //     err.image1 = "Front Image is required."
+        // }
         return err
     }
 
-    const handleSubmit = (e)=>{
+    async function handleSubmit(e){
         e.preventDefault();
         let errs = validateForm(product)
         setErrors(validateForm(product))
-
         if(Object.keys(errs).length===0){
-            let data = {
-                title:product.title,
-                category:product.category,
-                price:product.price,
-                description:product.description,
-                startdate:product.startdate,
-                enddate:product.enddate,
-                image1:image1,
-                image2:image2,
-                image3:image3,
-                image4:image4,
-            }
-            console.log(data)
+            // let data = {
+            //     userId:id,
+            //     productName:product.title,
+            //     //category:product.category,
+            //     productPrice:product.price,
+            //     productDescription:product.description,
+            //     startDate:product.startdate,
+            //     endDate:product.enddate,
+            //     productImage:image1[0],
+            //     // image2:image2,
+            //     // image3:image3,
+            //     // image4:image4,
+            // }
+            const formData = new FormData();
+            for (const file of image1) {
+                formData.append('file', file) // appending every file to formdata
+            }        
+            //formData.append("file[]",image1);
+            formData.append("userId",id);
+            formData.append("productName",product.title);
+            formData.append("productPrice",product.price);
+            formData.append("productDescription",product.description);
+            formData.append("startDate",product.startdate);
+            formData.append("endDate",product.enddate);
+            console.log(formData);
+            let result = await fetch("http://localhost:4000/auction/add-product", {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json"
+            },
+            body: formData
+            });
+            result = await result.json();
+            console.log(result);
         }else{
             console.log(errs)
         }
@@ -94,7 +114,7 @@ const CreateAuction = () => {
                             <input type="text" name="title" className={`form-control ${errors.title ? "is-invalid" : ""} `} id="title" onChange={handleChange}/>
                             {errors.title && <div className="alert-danger my-3 p-2">{errors.title}</div>}
                         </div>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <label htmlFor="category" className="form-label fw-bold">Category</label>
                             <select defaultValue="" className={`form-select ${errors.category ? "is-invalid" : ""} `} name="category" onChange={handleChange} >
                                 <option value="" disabled>Select Category</option>
@@ -103,7 +123,7 @@ const CreateAuction = () => {
                                 <option value="3">cat 3</option>
                             </select>
                             {errors.category && <div className="alert-danger my-3 p-2">{errors.category}</div>}
-                        </div>
+                        </div> */}
                         <div className='mb-3'>
                             <label htmlFor="price" className="form-label fw-bold">Price</label>
                             <div className='input-group'>
@@ -130,15 +150,15 @@ const CreateAuction = () => {
                         </div>
                         <hr/>
                         <div>
-                            <label htmlFor="startdate" className="form-label fw-bold">Product Images</label>
-                            <div>
+                             <label htmlFor="startdate" className="form-label fw-bold">Product Images</label>
+                            {/* <div> */}
                                 <div className="mb-3">
                                     <label htmlFor="formFile" className="form-label">Image 1</label>
-                                    <input className={`form-control ${errors.image1 ? "is-invalid" : ""} `} type="file" id="image-input1" accept='.jpg,.jpeg,.png' onChange={(e)=>setImage1(e.target.files[0]?[e.target.files[0]]:[])}/>
+                                    <input className={`form-control ${errors.image1 ? "is-invalid" : ""} `} type="file" multiple="multiple" id="image-input1" accept='.jpg,.jpeg,.png' onChange={(e)=>setImage1(e.target.files)}/>
                                     {errors.image1 && <div className="alert-danger my-3 p-2">{errors.image1}</div>}
-                                    {image1.length !==0?<img className='col-5 my-2' src={URL.createObjectURL(image1[0])} />:<></>}
+                                    {/* {image1.length !==0?<img className='col-5 my-2' src={URL.createObjectURL(image1[0])} />:<></>} */}
                                 </div>
-                                <div className="mb-3">
+                               {/*<div className="mb-3">
                                     <label htmlFor="formFile" className="form-label">Image 2</label>
                                     <input className="form-control" type="file" id="image-input2" accept='.jpg,.jpeg,.png' onChange={(e)=>setImage2(e.target.files[0]?[e.target.files[0]]:[])} />
                                     {image2.length !==0?<img className='col-5 my-2' src={URL.createObjectURL(image2[0])} />:<></>}
@@ -152,8 +172,8 @@ const CreateAuction = () => {
                                     <label htmlFor="formFile" className="form-label">Image 4</label>
                                     <input className="form-control" type="file" id="image-input4" accept='.jpg,.jpeg,.png' onChange={(e)=>setImage4(e.target.files[0]?[e.target.files[0]]:[])}/>
                                     {image4.length !==0?<img className='col-5 my-2' src={URL.createObjectURL(image4[0])} />:<></>}
-                                </div>
-                            </div>
+                                </div> 
+                            </div> */}
                             <hr/>
                             <div>
                                 <button type="submit" className='btn btn-primary float-end btn-lg'>Save</button>
