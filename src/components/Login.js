@@ -67,8 +67,15 @@ const Login = () => {
             body: JSON.stringify(item)
         });
         result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result))
-        history.push("/");
+        console.log(result);
+        if(result.error)
+            console.log(result.error);
+        else{
+            sessionStorage.setItem("user", result._id);
+            console.log(sessionStorage.getItem("user"));
+            window.location.href = "/";
+        }
+        //history.push("/");
     }
 
     useEffect(() => {
