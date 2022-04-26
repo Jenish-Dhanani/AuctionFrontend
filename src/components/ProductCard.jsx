@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useRef} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({product,role}) => {
+const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
   // console.log(product)
   const navigate = useNavigate()
 
@@ -11,8 +11,12 @@ const ProductCard = ({product,role}) => {
   }
 
   const handleUpdateBtnClick = (pid)=>{
-    navigate(`/product/update/${pid}`)
+    if(new Date(product.startDate) < new Date() ){
+      alert("You can not update product after auction start.")
+    }else
+      navigate(`/product/update/${pid}`)
   }
+
 
   // let interval = useRef();
 
@@ -69,8 +73,10 @@ const ProductCard = ({product,role}) => {
               <span className='btn btn-sm fs-4'>❤️</span>
               <button className='btn btn-primary w-50' onClick={()=>{handleProductClick(product._id)}}>Bid Now</button>
         </div>}
-        {role==="myAuction" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-end align-items-center" >
-              <button className='btn btn-primary w-50' onClick={()=>{handleUpdateBtnClick(product._id)}}>Update</button>
+        {role==="myAuction" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-between align-items-center" >
+              <button className='btn btn-danger' onClick={()=>handleOnDeleteBtnClick(product)}>Delete</button>
+              <button className='btn btn-primary' onClick={()=>{handleUpdateBtnClick(product._id)}}>Update</button>
+              <button className='btn btn-primary' onClick={()=>{handleProductClick(product._id)}}>View</button>
         </div>}
         {(role==="upComingAuctions" || role==="endedAuctions" )&& <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-end align-items-center" >
               <button className='btn btn-primary w-50' onClick={()=>{handleProductClick(product._id)}}>View</button>

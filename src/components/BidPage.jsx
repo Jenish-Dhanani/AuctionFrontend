@@ -24,7 +24,7 @@ function BidPage(){
 
     return <div>
         <Navigation/>
-        <div className="container"><BidProduct data={bidProduct}  /></div>
+        <div className="container"><BidProduct product={bidProduct}  /></div>
     </div>
 }
 

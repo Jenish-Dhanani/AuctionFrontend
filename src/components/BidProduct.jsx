@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 
 const BidProduct = (props) => {
-  let {data} = props
-  console.log(data)
+  let {product} = props
+  console.log(product)
   let bidInput = useRef()
 
-  const [bidValue, setBidValue] = useState(data.minbid+1)
+  const [bidValue, setBidValue] = useState(product?.minbid+1)
   const [formErrors, setFormErrors] = useState({})
   // const [isSubmit, setIsSubmit] = useState(false)
 
@@ -17,6 +18,29 @@ const BidProduct = (props) => {
       {
         addrow()
       }
+  }
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+      slidesToSlide:1
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 567 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 567, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
   }
 
   const [recentBidder, setRecentBidder] = useState([
@@ -47,7 +71,7 @@ const BidProduct = (props) => {
 
   function validate(value){
     const errors={}
-    if(value <= data.minbid){
+    if(value <= product.minbid){
       errors.bidValue = "Bid value must be grater than minimum bid value"
       bidInput.current.focus()
     }
@@ -57,30 +81,51 @@ const BidProduct = (props) => {
   return (
     <div className="row gy-5 my-3">
       <div className="col-xs-12 col-md-6 text-center">
-        <img src="https://picsum.photos/600/500?random=1" alt="" className="img-fluid rounded-3 shadow" />
+
+        {product.productImage?.length>0 ?
+          <>{product.productImage.length > 1?
+            <Carousel
+              responsive={responsive}
+              sliderClass='align-items-center'
+              containerClass='border border-1'
+            >
+              {product.productImage.map((item,index)=>{
+                return <img src={"http://localhost:4000/uploads/"+item} key={index} alt="" className="img-fluid rounded-3" />
+              })}
+            </Carousel>
+            :
+            <img src={"http://localhost:4000/uploads/"+product.productImage[0]} alt="" className="img-fluid rounded-3 shadow" />
+          }</>:
+          <img src="https://picsum.photos/600/500?random=1" alt="" className="img-fluid rounded-3 shadow" />
+        }
       </div>
       <div className="col-xs-12 col-md-6">
-        <h1 className="fs-1">{data.productName}</h1>
-        <p className="text-secondary fs-5">{data.productDescription}</p>
+        <h1 className="fs-1">{product.productName}</h1>
+        <p className="text-secondary fs-5">{product.productDescription}</p>
         <br />
         <ul className="list-group list-group-flush fs-5">
           <li className="list-group-item d-flex flex-row">
             <div className="fw-bold flex-grow-1">Minimum Bid</div>
-            <div className="flex-grow-1 text-end">{data.minbid+1}</div>
+            <div className="flex-grow-1 text-end">{product.Bid+1}</div>
           </li>
           <li className="list-group-item d-flex flex-row">
             <div className="fw-bold flex-grow-1">Seller</div>
-            <div className="flex-grow-1 text-end">{data.seller}</div>
+            <div className="flex-grow-1 text-end">{product.userId}</div>
           </li>
           <li className="list-group-item d-flex flex-row">
             <div className="fw-bold flex-grow-1">Time Left</div>
-            <div className="flex-grow-1 text-end">{new Date().toLocaleString()}</div>
+            <div className="flex-grow-1 text-end">{new Date(product.endDate).toLocaleString().substring(0,10) + " " + product.endTime}</div>
           </li>
         </ul>
-        <br />
-        <br />
-        <div>
-          <form action="" onSubmit={handleBid}>
+
+
+      {
+            sessionStorage.getItem("user") != product.userId &&
+            <>
+            <br />
+            <br />
+            <div>
+            <form action="" onSubmit={handleBid}>
             <div className="row g-3">
                 <div className="col-xs-12 col-md-8">
                   <input
@@ -104,6 +149,10 @@ const BidProduct = (props) => {
             </div>
           </form>
         </div>
+
+          </>
+      }
+
         <hr />
         <div className="mt-4">
           <h1 className="fs-3">Recent Bids</h1>
