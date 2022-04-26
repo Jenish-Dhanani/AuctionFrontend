@@ -167,12 +167,24 @@ const UpdateAuction = () => {
                         <hr/>
                         <div className="mb-3">
                             <label htmlFor="startdate" className="form-label fw-bold">Start date</label>
-                            <input type="date" className={`form-control ${errors.startdate ? "is-invalid" : ""} `} id="startdate" name="startdate" onChange={handleChange} value={product.startdate.substring(0,10)} />
+                            <input type="date"
+                            className={`form-control ${errors.startdate ? "is-invalid" : ""} `}
+                            id="startdate" name="startdate"
+                            onChange={handleChange}
+                            min={new Date().toLocaleDateString().substring(6,10)+"-"+new Date().toLocaleDateString().substring(3,5)+"-"+new Date().toLocaleDateString().substring(0,2)}
+                            value={product.startdate.substring(0,10)} />
                             {errors.startdate && <div className="alert-danger my-3 p-2">{errors.startdate}</div>}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="enddate" className="form-label fw-bold">End date</label>
-                            <input type="date" className={`form-control ${errors.enddate ? "is-invalid" : ""} `} id="enddate" name="enddate" onChange={handleChange} value={ product.enddate.substring(0,10)} />
+                            <input
+                            type="date"
+                            className={`form-control ${errors.enddate ? "is-invalid" : ""} `}
+                            id="enddate"
+                            name="enddate"
+                            onChange={handleChange}
+                            min={product.startdate.substring(0,10)}
+                            value={ product.enddate.substring(0,10)} />
                             {errors.enddate && <div className="alert-danger my-3 p-2">{errors.enddate}</div>}
                         </div>
                         <hr/>

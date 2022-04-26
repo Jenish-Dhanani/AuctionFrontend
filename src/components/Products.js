@@ -73,7 +73,7 @@ const Products = ({ countdownTimestampMs }) => {
                         UpComing.push(obj)
                     }else if(getNumberOfDays(obj.endDate,new Date().toISOString().substr(0,10)) < 0 && obj.userId != userId){
                         Ongoing.push(obj)
-                    }else{
+                    }else if(new Date(obj.endDate) < new Date()){
                         ended.push(obj)
                     }
                     console.log(obj)
@@ -92,6 +92,15 @@ const Products = ({ countdownTimestampMs }) => {
           }
           fetchData()
     },[])
+
+    const handleOnDeleteBtnClick = (product)=>{
+        if(new Date(product.startDate) < new Date() ){
+          alert("You can not delete this.")
+        }else{
+            setMyAuctions(myAuctions.filter(value=>value._id != product._id))
+            console.log(product)
+        }
+    }
 
     return (
         // <div>
@@ -164,10 +173,15 @@ const Products = ({ countdownTimestampMs }) => {
 
             {/* {timerComponents.length ? timerComponents : <span>Time's up!</span>} */}
             <div className='bg-light p-5'>
+                {
+
+                myAuctions.length > 0 && <>
                 <h1 className="text-center my-4">
                     My Auctions
                 </h1>
-                <CardGroup products={myAuctions} role="myAuction" />
+                    <CardGroup products={myAuctions} handleOnDeleteBtnClick={handleOnDeleteBtnClick} role="myAuction" />
+                </>
+                }
                 <h1 className="text-center mt-4">
                     Upcoming Auctions
                 </h1>

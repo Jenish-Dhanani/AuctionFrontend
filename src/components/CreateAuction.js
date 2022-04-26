@@ -77,7 +77,7 @@ const CreateAuction = () => {
             const formData = new FormData();
             for (const file of image1) {
                 formData.append('file', file) // appending every file to formdata
-            }        
+            }
             //formData.append("file[]",image1);
             formData.append("userId",id);
             formData.append("productName",product.title);
@@ -140,17 +140,27 @@ const CreateAuction = () => {
                         <hr/>
                         <div className="mb-3">
                             <label htmlFor="startdate" className="form-label fw-bold">Start date</label>
-                            <input type="date" className={`form-control ${errors.startdate ? "is-invalid" : ""} `} id="startdate" name="startdate" onChange={handleChange} />
+                            <input type="date" className={`form-control ${errors.startdate ? "is-invalid" : ""} `}
+                                id="startdate"
+                                name="startdate"
+                                onChange={handleChange}
+                                min={new Date().toLocaleDateString().substring(6,10)+"-"+new Date().toLocaleDateString().substring(3,5)+"-"+new Date().toLocaleDateString().substring(0,2)}
+                                />
                             {errors.startdate && <div className="alert-danger my-3 p-2">{errors.startdate}</div>}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="enddate" className="form-label fw-bold">End date</label>
-                            <input type="date" className={`form-control ${errors.enddate ? "is-invalid" : ""} `} id="enddate" name="enddate" onChange={handleChange} />
+                            <input type="date" className={`form-control ${errors.enddate ? "is-invalid" : ""} `}
+                            id="enddate"
+                            name="enddate"
+                            onChange={handleChange}
+                            min={product.startdate?product.startdate:new Date().toISOString().substring(0,10)}
+                            />
                             {errors.enddate && <div className="alert-danger my-3 p-2">{errors.enddate}</div>}
                         </div>
                         <hr/>
                         <div>
-                             <label htmlFor="startdate" className="form-label fw-bold">Product Images</label>
+                             <label htmlFor="image-input1" className="form-label fw-bold">Product Images</label>
                             {/* <div> */}
                                 <div className="mb-3">
                                     <label htmlFor="formFile" className="form-label">Image 1</label>
@@ -172,7 +182,7 @@ const CreateAuction = () => {
                                     <label htmlFor="formFile" className="form-label">Image 4</label>
                                     <input className="form-control" type="file" id="image-input4" accept='.jpg,.jpeg,.png' onChange={(e)=>setImage4(e.target.files[0]?[e.target.files[0]]:[])}/>
                                     {image4.length !==0?<img className='col-5 my-2' src={URL.createObjectURL(image4[0])} />:<></>}
-                                </div> 
+                                </div>
                             </div> */}
                             <hr/>
                             <div>
