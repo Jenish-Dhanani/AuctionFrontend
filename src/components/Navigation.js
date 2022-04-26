@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-=======
-import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Home from './Home';
->>>>>>> abb1f5a780b5416480349ab9a70c8926ec676aae
 
 const Navigation = () => {
 
