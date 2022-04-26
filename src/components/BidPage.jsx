@@ -12,7 +12,7 @@ function BidPage(){
         if(params){
             async function fetchData(){
                 await fetch(
-                  `http://localhost:5000/product/${params.id}`)
+                  `http://localhost:4000/Auction/${params.id}`)
                   .then((res) => res.json())
                     .then((json) => {
                     setBidProduct(json)
@@ -25,7 +25,6 @@ function BidPage(){
     return <div>
         <Navigation/>
         <div className="container"><BidProduct data={bidProduct}  /></div>
-
     </div>
 }
 

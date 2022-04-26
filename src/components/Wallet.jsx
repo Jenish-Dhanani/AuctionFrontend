@@ -13,11 +13,11 @@ return (
     <div className="row">
         <div className="col-12 bg-secondary text-light p-4 text-center">
             <h1>Transaction History</h1>
-            <ul class="list-group">
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+            <ul className="list-group">
+                <li className="list-group-item">A second item</li>
+                <li className="list-group-item">A third item</li>
+                <li className="list-group-item">A fourth item</li>
+                <li className="list-group-item">And a fifth one</li>
             </ul>
         </div>
     </div>
@@ -33,14 +33,14 @@ return (
     </div>
 
     {/* Add money */}
-    <div class="modal fade" id="AddMoney" tabIndex="-1" aria-labelledby="AddMoneyLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="AddMoneyLabel">Add money to wallet</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div className="modal fade" id="AddMoney" tabIndex="-1" aria-labelledby="AddMoneyLabel" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="AddMoneyLabel">Add money to wallet</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                         <label htmlFor="amount" className='w-50'>Enter Amount :</label>
                         <input id="amount" type="number" className="form-input" />
@@ -54,23 +54,23 @@ return (
                             <input id="cvv" type="number" className="form-input" />
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
     {/* withdraw */}
-    <div class="modal fade" id="WithdrawMoney" tabIndex="-1" aria-labelledby="WithdrawMoneyLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="WithdrawMoneyLabel">Add money to wallet</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div className="modal fade" id="WithdrawMoney" tabIndex="-1" aria-labelledby="WithdrawMoneyLabel" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="WithdrawMoneyLabel">Add money to wallet</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                         <label htmlFor="amount" className='w-50'>Enter Amount :</label>
                         <input id="amount" type="number" className="form-input" />
@@ -80,9 +80,9 @@ return (
                             <input id="AccountNumber" type="number" className="form-input" />
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

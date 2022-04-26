@@ -1,46 +1,53 @@
-import React from 'react'
-import { CardGroup } from './CardGroup'
 import { ProductCard } from './ProductCard'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+    slidesToSlide:5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 3 // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 768, min: 567 },
+    items: 2,
+    slidesToSlide: 2 // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 567, min: 0 },
+    items: 1,
+    slidesToSlide: 1 // optional, default to 1.
+  }
+};
+
+
 
 const ItemSlider = () => {
     return (
-        <div id="ItemSliderMain" className="carousel slide bg-dark" data-bs-ride="carousel">
-            <div className="carousel-inner">
-                <div className="carousel-item active" >
-                    {/* <img src={`https://picsum.photos/1000/1000?random=${Math.random()*10}`} className="d-block w-100" alt="..." /> */}
-                    <div className="container d-flex justify-content-center align-items-center flex-wrap pt-3 mb-4 gap-5">
-                        <ProductCard/>
-                        <ProductCard/>
-                        <ProductCard/>
-                    </div>
-                </div>
-                <div className="carousel-item" >
-                    {/* <img src={`https://picsum.photos/1000/1000?random=${Math.random()*10}`} className="d-block w-100" alt="..." /> */}
-                    <div className="container d-flex justify-content-center align-items-center flex-wrap pt-3 mb-4 gap-5">
-                        <ProductCard/>
-                        <ProductCard/>
-                        <ProductCard/>
-                    </div>
-                </div>
-                <div className="carousel-item" >
-                    {/* <img src={`https://picsum.photos/1000/1000?random=${Math.random()*10}`}className="d-block w-100" alt="..." /> */}
-                    <div className="container d-flex justify-content-center align-items-center flex-wrap pt-3 mb-4 gap-5">
-                        <ProductCard/>
-                        <ProductCard/>
-                        <ProductCard/>
-                    </div>
-                </div>
-            </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#ItemSliderMain" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true" />
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#ItemSliderMain" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true" />
-                <span className="visually-hidden">Next</span>
-            </button>
-        </div>
-    )
+      <Carousel responsive={responsive}
+      containerClass="bg-dark p-5"
+      showDots={true}
+      ssr={true} // means to render carousel on server-side.
+      autoPlaySpeed={4000}
+      autoPlay={true}
+      >
+
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+      <ProductCard role="onGoingAuctions"></ProductCard>
+    </Carousel>)
 }
 
 export {ItemSlider}

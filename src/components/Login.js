@@ -67,8 +67,16 @@ const Login = () => {
             body: JSON.stringify(item)
         });
         result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result))
-        history.push("/");
+        console.log(result);
+        if(result.error)
+            console.log(result.error);
+        else{
+            sessionStorage.setItem("user", result._id);
+            console.log(sessionStorage.getItem("user"));
+            // window.location.href = "/";
+            navigate("/home")
+        }
+        //history.push("/");
     }
 
     useEffect(() => {
@@ -126,7 +134,7 @@ const Login = () => {
                                     <div className="w-100 text-end">
                                         <p>Not a member?
                                             {" "}
-                                            <Link data-toggle="tab" to="/sign-up">Sign Up</Link>
+                                            <Link data-toggle="tab" to="/register">Sign Up</Link>
                                         </p>
                                     </div>
                                 </div>
