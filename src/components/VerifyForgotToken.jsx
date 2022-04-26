@@ -53,6 +53,15 @@ const VerifyForgotToken = ()=>{
             console.log(errs)
         }
     }
+    function replaceJSX(str, find, replace) {
+        let parts = str.split(find);
+        let result = []
+        for(let i = 0, result = []; i < parts.length; i++) {
+            result.push(parts[i]);
+            result.push(replace);
+        }
+        return result;
+    }
 
     return (<>
     <div className='container'>
@@ -67,7 +76,11 @@ const VerifyForgotToken = ()=>{
                             <label className="form-control-placeholder" htmlFor="password">Password</label>
                             <input type="password" className={`form-control ${errors.password? "is-invalid" :""}`}
                                 name="password" value={values.password} onChange={handleChange} />
-                            {errors.password &&<div className="alert-danger my-3 p-2">{errors.password}</div>}
+                            {
+                                errors.password &&<div className="alert-danger my-3 p-2">
+                                    {replaceJSX(errors.password, ".", <br />)}
+                                </div>
+                            }
                     </div>
                     <div className="form-group my-3 text-start w-100">
                             <label className="form-control-placeholder" htmlFor="confirmPassword">Confirm Email</label>

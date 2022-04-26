@@ -73,7 +73,12 @@ const Login = () => {
         else{
             sessionStorage.setItem("user", result._id);
             console.log(sessionStorage.getItem("user"));
+<<<<<<< HEAD
+            // window.location.href = "/";
+            navigate("/home")
+=======
             window.location.href = "/";
+>>>>>>> abb1f5a780b5416480349ab9a70c8926ec676aae
         }
         //history.push("/");
     }
@@ -133,7 +138,7 @@ const Login = () => {
                                     <div className="w-100 text-end">
                                         <p>Not a member?
                                             {" "}
-                                            <Link data-toggle="tab" to="/sign-up">Sign Up</Link>
+                                            <Link data-toggle="tab" to="/register">Sign Up</Link>
                                         </p>
                                     </div>
                                 </div>

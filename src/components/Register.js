@@ -261,7 +261,7 @@ const Register = () => {
                                 <div className="form-group mt-5">
                                     <div className="w-100 text-end">
                                         <p>Not a member?
-                                            {" "}<Link data-toggle="tab" to="/sign-in">SignIn</Link>
+                                            {" "}<Link data-toggle="tab" to="/login">SignIn</Link>
                                         </p>
                                     </div>
                                 </div>

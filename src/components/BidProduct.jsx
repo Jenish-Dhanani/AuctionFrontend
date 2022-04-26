@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 const BidProduct = (props) => {
   let {data} = props
+  console.log(data)
   let bidInput = useRef()
 
   const [bidValue, setBidValue] = useState(data.minbid+1)
