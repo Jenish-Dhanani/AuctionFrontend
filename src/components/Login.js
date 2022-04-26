@@ -73,8 +73,12 @@ const Login = () => {
         else{
             sessionStorage.setItem("user", result._id);
             console.log(sessionStorage.getItem("user"));
+<<<<<<< HEAD
             // window.location.href = "/";
             navigate("/home")
+=======
+            window.location.href = "/";
+>>>>>>> abb1f5a780b5416480349ab9a70c8926ec676aae
         }
         //history.push("/");
     }

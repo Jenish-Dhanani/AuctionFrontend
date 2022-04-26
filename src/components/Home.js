@@ -46,7 +46,11 @@ const Home = () => {
       <h1 className="text-center mt-4">
         Daily Auctions
       </h1>
+<<<<<<< HEAD
       <CardGroup products={cardGroups} role="onGoingAuctions"/>
+=======
+      <CardGroup products={cardGroups}/>
+>>>>>>> abb1f5a780b5416480349ab9a70c8926ec676aae
       <Testimonials/>
       <Footer/>
     </div>
