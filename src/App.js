@@ -19,6 +19,7 @@ import Contact from './components/Contactus/Contactus';
 import { PrivateRouter } from './components/PrivateRoute';
 import PageNotFound from './components/PageNotFound';
 import UpdateAuction from './components/UpdateAuction';
+import { FeedBack } from './components/Feedback';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='/feedback' element={<FeedBack/>} />
         {/* <Route path='/aboutus' element={<Aboutus/>} /> */}
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
