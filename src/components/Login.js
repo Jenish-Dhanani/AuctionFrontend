@@ -72,6 +72,8 @@ const Login = () => {
             console.log(result.error);
         else{
             sessionStorage.setItem("user", result._id);
+            //To check if user is admin or not
+            sessionStorage.setItem("email", item.email);
             console.log(sessionStorage.getItem("user"));
             // window.location.href = "/";
             navigate("/home")

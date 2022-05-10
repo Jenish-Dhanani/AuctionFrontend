@@ -42,7 +42,7 @@ const Home = () => {
         Current Auctions
       </h1>
       <CardGroup products={cardGroups} role="onGoingAuctions" />
-
+      
       <h1 className="text-center mt-4">
         Daily Auctions
       </h1>

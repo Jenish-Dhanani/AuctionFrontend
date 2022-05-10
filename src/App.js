@@ -19,7 +19,13 @@ import Contact from './components/Contactus/Contactus';
 import { PrivateRouter } from './components/PrivateRoute';
 import PageNotFound from './components/PageNotFound';
 import UpdateAuction from './components/UpdateAuction';
+<<<<<<< HEAD
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import { DropUser } from './components/AdminDashboard/DropUser';
+import DropProduct from './components/AdminDashboard/DropProduct';
+=======
 import { FeedBack } from './components/Feedback';
+>>>>>>> 12656bc9259c8243a6d5624ab089d9b2dd30b421
 
 
 function App() {
@@ -32,6 +38,12 @@ function App() {
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/contactus' element={<Contact/>}/>
+
+        {/*Admin Dashboard Updates*/}
+        <Route path='/admin' element={<AdminDashboard/>} />
+        <Route path='/dropProduct' element={<DropProduct/>} />
+        <Route path='/dropUser' element={<DropUser/>} />
+
         <Route element={<PrivateRouter/>}>
             <Route path='/home' element={<Products countdownTimestampMs={1659983662000}/>} />
             <Route path='/product/:id' exact element={<BidPage />} />

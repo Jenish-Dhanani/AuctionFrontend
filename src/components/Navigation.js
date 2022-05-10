@@ -76,7 +76,6 @@ const Navigation = () => {
                 </Link>
               </li>
             </ul>
-
           }
           </div>
         </div>
