@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 import Products from './components/Products';
 import CreateAuction from './components/CreateAuction';
@@ -23,13 +23,15 @@ import PageNotFound from './components/PageNotFound';
 import UpdateAuction from './components/UpdateAuction';
 import { ToastContainer, toast } from "react-toastify";
 import { VerifyUser } from './components/VerifyUser';
-if (typeof window !== "undefined") {
-  injectStyle();
-}
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
 import { FeedBack } from './components/Feedback';
+import Aboutus  from './components/Aboutus/Aboutus';
+if (typeof window !== "undefined") {
+  injectStyle();
+}
+
 
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/feedback' element={<FeedBack/>} />
+        <Route path='/Aboutus' element={<Aboutus/>} />
         {/* <Route path='/aboutus' element={<Aboutus/>} /> */}
         <Route path='/register' element={<Register notify={notify}/>} />
         <Route path='/login' element={<Login notify={notify}/>} />
