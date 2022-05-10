@@ -19,13 +19,10 @@ import Contact from './components/Contactus/Contactus';
 import { PrivateRouter } from './components/PrivateRoute';
 import PageNotFound from './components/PageNotFound';
 import UpdateAuction from './components/UpdateAuction';
-<<<<<<< HEAD
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
-=======
 import { FeedBack } from './components/Feedback';
->>>>>>> 12656bc9259c8243a6d5624ab089d9b2dd30b421
 
 
 function App() {
