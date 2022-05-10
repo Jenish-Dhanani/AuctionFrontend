@@ -15,7 +15,7 @@ useEffect(async()=>{
 },[])
 
 const addMoney=()=>{
-
+    //add money
 }
 
 const withdrawMoney = ()=>{
