@@ -48,6 +48,16 @@ const Navigation = () => {
                 <ul className="navbar-nav ms-auto">
                 {/* {(!isLogin || pathname=='/sign-in' || pathname=='/sign-up') &&<> */}
                 <li className="nav-item">
+                  <Link className="nav-link" to="/home">
+                    Auctions
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/wallet">
+                    Wallet
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link className="nav-link" to="/createauction">
                     Create Auction
                   </Link>

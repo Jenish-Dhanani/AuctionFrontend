@@ -59,6 +59,9 @@ const Products = ({ countdownTimestampMs }) => {
               .then((res) => res.json())
               .then((json) => {
                 console.log(json)
+                if(json === undefined){
+                    json = []
+                }
                 // setCardGroups(json)
                 let MyArr = [];
                 let UpComing = [];

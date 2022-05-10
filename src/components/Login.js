@@ -2,7 +2,7 @@ import Navigation from './Navigation';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const Login = () => {
+const Login = ({notify}) => {
 
     const navigate = useNavigate();
     const history = useNavigate();
@@ -67,15 +67,28 @@ const Login = () => {
             body: JSON.stringify(item)
         });
         result = await result.json();
+        console.log("login result is");
         console.log(result);
         if(result.error)
+        {
             console.log(result.error);
+            if(result.error === "No user found"){
+                setErrors({"email":"No email Found."})
+                notify("No email Found.")
+            }else if(result.error === "Password is incorrect"){
+                setErrors({"password":"Password is incorrect"})
+                notify("Password is incorrect")
+            }else if(result.error  === "Please Verify Your Account Before Logging In."){
+                notify("Please Verify Your Account Before Logging In.")
+            }
+        }
         else{
             sessionStorage.setItem("user", result._id);
             //To check if user is admin or not
             sessionStorage.setItem("email", item.email);
             console.log(sessionStorage.getItem("user"));
             // window.location.href = "/";
+            notify("Login successfully.")
             navigate("/home")
         }
         //history.push("/");
@@ -131,7 +144,7 @@ const Login = () => {
                                 </div>
                                 <div className="form-group mt-5">
                                     <p className="w-100 text-end">
-                                        <Link to="/">Forgot Password</Link>
+                                        <Link to="/forgotpassword">Forgot Password</Link>
                                     </p>
                                     <div className="w-100 text-end">
                                         <p>Not a member?
