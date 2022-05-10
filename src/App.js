@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home';
+import ReactDOM from 'react-dom'
 
 import Products from './components/Products';
 import CreateAuction from './components/CreateAuction';
@@ -25,6 +26,10 @@ import { VerifyUser } from './components/VerifyUser';
 if (typeof window !== "undefined") {
   injectStyle();
 }
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import { DropUser } from './components/AdminDashboard/DropUser';
+import DropProduct from './components/AdminDashboard/DropProduct';
+import { FeedBack } from './components/Feedback';
 
 
 function App() {
@@ -36,10 +41,17 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='/feedback' element={<FeedBack/>} />
         {/* <Route path='/aboutus' element={<Aboutus/>} /> */}
         <Route path='/register' element={<Register notify={notify}/>} />
         <Route path='/login' element={<Login notify={notify}/>} />
         <Route path='/contactus' element={<Contact/>}/>
+
+        {/*Admin Dashboard Updates*/}
+        <Route path='/admin' element={<AdminDashboard/>} />
+        <Route path='/dropProduct' element={<DropProduct/>} />
+        <Route path='/dropUser' element={<DropUser/>} />
+
         <Route element={<PrivateRouter/>}>
             <Route path='/home' element={<Products countdownTimestampMs={1659983662000}/>} />
             {/* <Route path='/product/:id' exact element={<BidPage />} /> */}

@@ -1,14 +1,35 @@
 import React from 'react'
 import Navigation from './Navigation';
+
+import { useState } from "react";
+import { ReactDOM } from 'react';
+
 import './UserProfile.css';
+
+
 const UserProfile = () => {
     let UserDetails={
-        Fname:"Richa",
-        Lname:"Parikh",
-        DOB:"01/01/2000",
-        Email:"richa@gmail.com",
-        MobileNo:"1234567890",
-        Password:"12"
+        Fname:"",
+        Lname:"",
+        DOB:"",
+        Email:"",
+        MobileNo:"",
+        Password:""
+    }
+
+    const showchp = () =>
+    {
+      
+       var x = document.getElementById('chp');
+      var y  = document.getElementById('chpass');
+        if(x.checked)
+        {
+          y.style.visibility = "visible";
+        }
+        else
+        {
+          y.style.visibility = "hidden";
+        }
     }
 
     return (
@@ -31,6 +52,10 @@ const UserProfile = () => {
                   <div className="col-md-12 col-12 user-detail text-center mb-2">
                     <h4 className="m-0">
                       <strong>Michael Finn</strong>
+                      <br></br>
+                      <button className="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#EditProfilePic">
+                          Edit Profile Picture
+                        </button>
                     </h4>
                   </div>
                 </div>
@@ -44,7 +69,7 @@ const UserProfile = () => {
                       className="card-header rounded-0 pt-2 pb-2 accordion-header"
                       id="headingMyStory"
                     >
-                      <h6 className="mb-0">My Story</h6>
+                      <h6 className="mb-0">My Auction</h6>
                       <a
                         className="float-end"
                         data-bs-toggle="collapse"
@@ -64,29 +89,22 @@ const UserProfile = () => {
                       <div className="card-body pt-2 pb-2">
                         <div className="body-section mb-3">
                           <h6 className="section-heading mb-1">
-                            <strong>About</strong>
+                            <strong>Product Name</strong>
                           </h6>
                           <p className="section-content m-0">
-                            Write something about you.
+                            Sample Product Name
                           </p>
+
                         </div>
+                        
                         <div className="body-section mb-3">
                           <h6 className="section-heading mb-1">
-                            <strong>Introduction</strong>
+                            <strong>Date of acution</strong>
                           </h6>
                           <p className="section-content m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt.
+                              Auction Date
                           </p>
-                        </div>
-                        <div className="body-section mb-3">
-                          <h6 className="section-heading mb-1">
-                            <strong>Achievement</strong>
-                          </h6>
-                          <p className="section-content m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt.
-                          </p>
+                          <hr></hr>
                         </div>
                         {/* <button className="btn btn-info btn-sm">Edit</button> */}
                       </div>
@@ -153,7 +171,10 @@ const UserProfile = () => {
                           </h6>
                           <p className="section-content m-0">abcxyz.com</p>
                         </div>
-                        <button className="btn btn-danger btn-sm">Edit</button>
+                        <button className="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#EditProfile">
+                          Edit
+                        </button>
+                        {/* <button className="btn btn-danger btn-sm">Edit</button> */}
                       </div>
                     </div>
                   </div>
@@ -166,7 +187,7 @@ const UserProfile = () => {
                       className="card-header rounded-0 pt-2 pb-2 accordion-header"
                       id="headingMyTasks"
                     >
-                      <h6 className="mb-0">My Tasks</h6>
+                      <h6 className="mb-0">My Bid</h6>
                       <a
                         className="float-end"
                         data-bs-toggle="collapse"
@@ -183,72 +204,27 @@ const UserProfile = () => {
                       aria-labelledby="headingMyTasks"
                       data-parent="#accordionMyTasks"
                     >
+
                       <div className="card-body pt-2 pb-2">
                         <div className="body-section mb-3">
-                          <p className="m-0">Completed Pre-Orders - 90%</p>
-                          <div className="progress">
-                            <div
-                              className="progress-bar progress-bar-striped"
-                              role="progressbar"
-                              style={{ width: "10%" }}
-                              aria-valuenow={10}
-                              aria-valuemin={0}
-                              aria-valuemax={100}
-                            />
-                          </div>
+                          <h6 className="section-heading mb-1">
+                            <strong>Product Name</strong>
+                          </h6>
+                          <p className="section-content m-0">
+                            Sample Product Name
+                          </p>
                         </div>
+                        
                         <div className="body-section mb-3">
-                          <p className="m-0">Completed Orders - 40%</p>
-                          <div className="progress">
-                            <div
-                              className="progress-bar progress-bar-striped bg-success"
-                              role="progressbar"
-                              style={{ width: "25%" }}
-                              aria-valuenow={25}
-                              aria-valuemin={0}
-                              aria-valuemax={100}
-                            />
-                          </div>
+                          <h6 className="section-heading mb-1">
+                            <strong>Date of acution</strong>
+                          </h6>
+                          <p className="section-content m-0">
+                              Auction Date
+                          </p>
+                          <hr></hr>
                         </div>
-                        <div className="body-section mb-3">
-                          <p className="m-0">Design New Ad - 20%</p>
-                          <div className="progress">
-                            <div
-                              className="progress-bar progress-bar-striped bg-info"
-                              role="progressbar"
-                              style={{ width: "50%" }}
-                              aria-valuenow={50}
-                              aria-valuemin={0}
-                              aria-valuemax={100}
-                            />
-                          </div>
-                        </div>
-                        <div className="body-section mb-3">
-                          <p className="m-0">Conduct Feasibility Test - 60%</p>
-                          <div className="progress">
-                            <div
-                              className="progress-bar progress-bar-striped bg-warning"
-                              role="progressbar"
-                              style={{ width: "75%" }}
-                              aria-valuenow={75}
-                              aria-valuemin={0}
-                              aria-valuemax={100}
-                            />
-                          </div>
-                        </div>
-                        <div className="body-section mb-3">
-                          <p className="m-0">Conduct Domain Analysis - 80%</p>
-                          <div className="progress">
-                            <div
-                              className="progress-bar progress-bar-striped bg-danger"
-                              role="progressbar"
-                              style={{ width: "100%" }}
-                              aria-valuenow={100}
-                              aria-valuemin={0}
-                              aria-valuemax={100}
-                            />
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -258,6 +234,87 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+
+
+          {/* Edit Profile */}
+    <div className="modal fade" id="EditProfile" tabIndex="-1" aria-labelledby="EditProfileLabel" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="EditProfileLabel">Edit Profile</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                        <label htmlFor="name" className='w-50'>Name :</label>
+                        <input id="name" type="text" className="form-input" />
+                    </div>
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                            <label htmlFor="address" className='w-50'>Address :</label>
+                            <input id="address" type="text" className="idm-input" />
+                    </div>
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                        <label htmlFor="contact number" className='w-50'>Contact Number :</label>
+                        <input id="contact number" type="text" className="form-input" />
+                    </div>
+
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                            <label htmlFor="email" className='w-50'>Email :</label>
+                            <input id="email" type="text" className="form-input" />
+                    </div>
+
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                            <label htmlFor="website" className='w-50'>Website :</label>
+                            <input id="website" type="text" className="form-input" />
+                    </div>
+
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                    <input id="chp" type="checkbox" className="form-input" onClick={showchp}/>
+                            <label htmlFor="password" className='w-50'>Password :</label>
+                            <input id="password" type="password" className="form-input" />
+                    </div>
+
+                    
+                    <div className='d-flex justify-content-evenly align-items-center my-3' id="chpass" style={{visibility: "hidden"}}>
+                            <label htmlFor="conf-password" className='w-50' id="cp1">Confirm Password :</label>
+                            <input id="conf-password" type="password"  className="form-input" />
+                    </div>
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">Edit Profile </button>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+
+
+              {/* Edit Profile pic */}
+              <div className="modal fade" id="EditProfilePic" tabIndex="-1" aria-labelledby="EditProfilePicLabel" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="EditProfilePicLabel">Edit Profile Picture</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                        <label htmlFor="profile pic" className='w-50'>Upload Profile Picture:</label>
+                        <input id="name" type="file"  accept="image/png, image/gif, image/jpeg"  className="form-input" />
+                    </div>
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">change Profile picture</button>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
     </>
   );
 }
