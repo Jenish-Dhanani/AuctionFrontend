@@ -9,12 +9,12 @@ import './UserProfile.css';
 
 const UserProfile = () => {
     let UserDetails={
-        Fname:"Richa",
-        Lname:"Parikh",
-        DOB:"01/01/2000",
-        Email:"richa@gmail.com",
-        MobileNo:"1234567890",
-        Password:"12"
+        Fname:"",
+        Lname:"",
+        DOB:"",
+        Email:"",
+        MobileNo:"",
+        Password:""
     }
 
     const showchp = () =>
