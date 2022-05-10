@@ -41,7 +41,7 @@ function App() {
   }
   return (
     <Router>
-      <Routes>
+      <Routes>  
         <Route path='/' element={<Home/>} />
         <Route path='/feedback' element={<FeedBack/>} />
         <Route path='/Aboutus' element={<Aboutus/>} />
@@ -59,11 +59,11 @@ function App() {
             <Route path='/home' element={<Products countdownTimestampMs={1659983662000}/>} />
             {/* <Route path='/product/:id' exact element={<BidPage />} /> */}
             <Route path='/product/:id' exact element={<BidProduct />} />
-            <Route path='/createauction' element={<CreateAuction/>} />
+            <Route path='/createauction' element={<CreateAuction notify={notify}/>} />
             <Route path='/product/update/:id' element={<UpdateAuction/>} />
             {/* <Route path='/profile' element={<Profile/>} /> */}
             <Route path='/profile' element={<UserProfile/>}/>
-            <Route path='/wallet' element={<Wallet/>} />
+            <Route path='/wallet' element={<Wallet notify={notify} />} />
         </Route>
         <Route path='/forgotpassword' element={<Forgotpassword notify={notify}/>} />
         <Route path='/user/reset-password/:token/:uid' element={<VerifyForgotToken notify={notify}/>} />
