@@ -23,14 +23,14 @@ import PageNotFound from './components/PageNotFound';
 import UpdateAuction from './components/UpdateAuction';
 import { ToastContainer, toast } from "react-toastify";
 import { VerifyUser } from './components/VerifyUser';
-if (typeof window !== "undefined") {
-  injectStyle();
-}
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
 import { FeedBack } from './components/Feedback';
 import Aboutus  from './components/Aboutus/Aboutus';
+if (typeof window !== "undefined") {
+  injectStyle();
+}
 
 
 
