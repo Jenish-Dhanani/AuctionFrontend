@@ -68,8 +68,10 @@ const UserProfile = () => {
 
     }
 
+
     fetchData();
   }, [])
+
 
 
     const showchp = () =>
@@ -375,6 +377,10 @@ const UserProfile = () => {
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                         <label htmlFor="name" className='w-50'>Name :</label>
                         <input id="name" type="text" name="firstName" className="form-input" value={updateUser.firstName || ""} onChange={handleChange}/>
+                    </div>
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                        <label htmlFor="name" className='w-50'>Name :</label>
+                        <input id="name" type="text" className="form-input" />
                     </div>
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                             <label htmlFor="address" className='w-50'>Address :</label>

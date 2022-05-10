@@ -1,8 +1,9 @@
 import Navigation from './Navigation';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import auctionCover from '../../src/images/auction-cover.jpeg'
 
-const Login = () => {
+const Login = ({notify}) => {
 
     const navigate = useNavigate();
     const history = useNavigate();
@@ -67,15 +68,28 @@ const Login = () => {
             body: JSON.stringify(item)
         });
         result = await result.json();
+        console.log("login result is");
         console.log(result);
         if(result.error)
+        {
             console.log(result.error);
+            if(result.error === "No user found"){
+                setErrors({"email":"No email Found."})
+                notify("No email Found.")
+            }else if(result.error === "Password is incorrect"){
+                setErrors({"password":"Password is incorrect"})
+                notify("Password is incorrect")
+            }else if(result.error  === "Please Verify Your Account Before Logging In."){
+                notify("Please Verify Your Account Before Logging In.")
+            }
+        }
         else{
             sessionStorage.setItem("user", result._id);
             //To check if user is admin or not
             sessionStorage.setItem("email", item.email);
             console.log(sessionStorage.getItem("user"));
             // window.location.href = "/";
+            notify("Login successfully.")
             navigate("/home")
         }
         //history.push("/");
@@ -97,18 +111,18 @@ const Login = () => {
 
 
     return (
-        <div>
+        <div style={{backgroundColor:"#f2f2f2", minHeight:"100vh"}}>
             <Navigation />
             <div className="container">
-                <div className="row justify-content-center my-4">
-                    <div className="col-md-7 col-lg-5 shadow p-3">
+                <div className="row justify-content-center mt-4">
+                    <div className="col-md-7 col-lg-5 shadow p-3" style={{backgroundColor:"white"}}>
                         <div className="rounded w-100"
-                            style={{ backgroundImage: `url("https://preview.colorlib.com/theme/bootstrap/login-form-15/images/xbg-1.jpg.pagespeed.ic.EtoN2PmO7Y.webp")`, height: "200px" }}>
+                            style={{ backgroundImage: `url(${auctionCover})`, height: "200px", backgroundSize: "140%", backgroundRepeat: "no-repeat" }}>
                         </div>
                         <div className="p-3">
                             <div className="d-flex">
                                 <div className="w-100">
-                                    <h3 className="mb-4">Sign In</h3>
+                                    <h3 className="mb-2 h1">Sign In</h3>
                                 </div>
                             </div>
                             {messageBox.length != 0 && <div className="alert alert-danger">{messageBox}</div>}
@@ -125,15 +139,15 @@ const Login = () => {
                                 ${errors.password ? "is-invalid" : ""}`} onChange={handleChange} />
                                     {errors.password && <div className="alert-danger my-3 p-2">{errors.password}</div>}
                                 </div>
-                                <div className="form-group my-3">
+                                <div className="form-group my-3 ">
                                     <button type="submit" className="form-control btn btn-primary rounded submit px-3">Sign
                                         In</button>
                                 </div>
-                                <div className="form-group mt-5">
-                                    <p className="w-100 text-end">
-                                        <Link to="/">Forgot Password</Link>
+                                <div className="form-group mt-2">
+                                    <p className="w-100 text-center">
+                                        <Link to="/forgotpassword">Forgot Password</Link>
                                     </p>
-                                    <div className="w-100 text-end">
+                                    <div className="w-100 text-center">
                                         <p>Not a member?
                                             {" "}
                                             <Link data-toggle="tab" to="/register">Sign Up</Link>

@@ -1,7 +1,10 @@
 import React,{useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 
-const CreateAuction = () => {
+const CreateAuction = ({notify}) => {
+    const navigate = useNavigate()
+
     var id=sessionStorage.getItem("user");
     const [image1, setImage1] = useState([]);
     const [image2, setImage2] = useState([]);
@@ -95,6 +98,10 @@ const CreateAuction = () => {
             });
             result = await result.json();
             console.log(result);
+            if(result === "Product Added"){
+                notify("Product Added.")
+                navigate('/home')
+            }
         }else{
             console.log(errs)
         }

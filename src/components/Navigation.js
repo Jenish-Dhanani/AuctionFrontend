@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import navLogo from '../../src/images/letter-a.png'
 
 const Navigation = () => {
 
@@ -26,10 +27,13 @@ const Navigation = () => {
     return (
 
       <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-5">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            Home
+          <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src={navLogo} alt="" width="40" height="40" class="d-inline-block align-text-top mx-3"/>
+      AuctionPoint
+    </a>
           </Link>
           <button
             className="navbar-toggler"
@@ -48,17 +52,27 @@ const Navigation = () => {
                 <ul className="navbar-nav ms-auto">
                 {/* {(!isLogin || pathname=='/sign-in' || pathname=='/sign-up') &&<> */}
                 <li className="nav-item">
-                  <Link className="nav-link" to="/createauction">
+                  <Link className="nav-link px-4" to="/home">
+                    Auctions
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link px-4" to="/wallet">
+                    Wallet
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link px-4" to="/createauction">
                     Create Auction
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profile">
+                  <Link className="nav-link px-4" to="/profile">
                     Profile
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <div className="btn btn-danger" onClick={LogOut}>
+                  <div className="btn btn-danger px-4 mx-4" onClick={LogOut}>
                     Log Out
                   </div>
                 </li>
@@ -66,13 +80,13 @@ const Navigation = () => {
               :
               <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
+                <Link className="btn btn-outline-light px-5" to="/login">
+                  Sign In
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Signup
+                <Link className="btn btn-primary px-5 mx-3" to="/register">
+                  Sign Up
                 </Link>
               </li>
             </ul>

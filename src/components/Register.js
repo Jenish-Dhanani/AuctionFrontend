@@ -2,8 +2,9 @@ import Navigation from './Navigation';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import validator from 'validator'
+import auctionCover from '../../src/images/auction-cover.jpeg'
 
-const Register = () => {
+const Register = ({notify}) => {
 
     const formInitialValue = {
         firstName: "",
@@ -35,55 +36,42 @@ const Register = () => {
     async function handleSubmit(event) {
         //console.log("data ", event.target);
         event.preventDefault()
-        setErrors(validateForm(values))
-        setDataIsCorrect(true)
+        // setErrors(validateForm(values))
+        let errs = validateForm(values)
+        // setDataIsCorrect(true)
+        setErrors(errs)
 
-        const firstName = event.target.firstName.value;
-        //console.log("fn ",firstName);
-        const lastName = event.target.lastName.value;
-        const dob = event.target.dob.value;
-        const email = event.target.email.value;
-        const mobileNumber = event.target.mobileNumber.value;
-        const password = event.target.password.value;
-        const aadharNumber = event.target.aadharNumber.value;
-        const address = event.target.address.value;
-        const gender = event.target.gender.value;
+        if(Object.keys(errs).length===0){
+            const firstName = event.target.firstName.value;
+            //console.log("fn ",firstName);
+            const lastName = event.target.lastName.value;
+            const dob = event.target.dob.value;
+            const email = event.target.email.value;
+            const mobileNumber = event.target.mobileNumber.value;
+            const password = event.target.password.value;
+            const aadharNumber = event.target.aadharNumber.value;
+            const address = event.target.address.value;
+            const gender = event.target.gender.value;
 
-        let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
-        // console.warn(item)
-        console.log("data ", item);
-        let result = await fetch("http://localhost:4000/user/register", {
-            method: 'POST',
-            body: JSON.stringify(item),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
+            let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
+            // console.warn(item)
+            console.log("data ", item);
+            let result = await fetch("http://localhost:4000/user/register", {
+                method: 'POST',
+                body: JSON.stringify(item),
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            })
+
+            result = await result.json()
+            console.warn("result", result)
+            if(result.message === 'Record created successfully.'){
+                notify("Account verification link has been sent to your mail.")
             }
-        })
-
-        result = await result.json()
-        console.warn("result", result)
-    }
-
-    useEffect(() => {
-        if (Object.keys(errors).length === 0 && dataIsCorrect) {
-
-            let data = {
-                firstName: values.firstName,
-                lastName: values.lastName,
-                email: values.email,
-                password: values.password,
-                mobileNumber: values.mobileNumber,
-                dob: values.dob,
-                aadharNumber: values.aadharNumber,
-                profile: values.profile,
-                gender: values.gender,
-                address: values.address
-            }
-
-
         }
-    }, [errors])
+    }
 
     const validateForm = (values) => {
         let err = {}
@@ -161,18 +149,18 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div style={{backgroundColor:"#f2f2f2", minHeight:"100vh"}}>
             <Navigation />
             <div className="container">
                 <div className="row justify-content-center my-4">
-                    <div className="col-md-7 col-lg-5 shadow p-3">
+                    <div className="col-md-7 col-lg-5 shadow p-3" style={{backgroundColor:"white"}}>
                         <div className="rounded w-100"
-                            style={{ backgroundImage: `url("https://preview.colorlib.com/theme/bootstrap/login-form-15/images/xbg-1.jpg.pagespeed.ic.EtoN2PmO7Y.webp")`, height: "200px" }}>
+                            style={{ backgroundImage: `url(${auctionCover})`, height: "200px", backgroundSize: "140%", backgroundRepeat: "no-repeat" }}>
                         </div>
                         <div className="p-3">
                             <div className="d-flex">
                                 <div className="w-100">
-                                    <h3 className="mb-4">Sign Up</h3>
+                                    <h3 className="mb-4 h1">Sign Up</h3>
                                 </div>
                             </div>
                             {sucessMessage.length !== 0 && <div className="alert alert-success">{sucessMessage}</div>}
@@ -259,9 +247,9 @@ const Register = () => {
                                         Up</button>
                                 </div>
                                 <div className="form-group mt-5">
-                                    <div className="w-100 text-end">
+                                    <div className="w-100 text-center">
                                         <p>Not a member?
-                                            {" "}<Link data-toggle="tab" to="/login">SignIn</Link>
+                                            {" "}<Link data-toggle="tab" to="/login">Sign In</Link>
                                         </p>
                                     </div>
                                 </div>
