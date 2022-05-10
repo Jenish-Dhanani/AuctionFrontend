@@ -1,9 +1,10 @@
 import { useEffect,useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
-const VerifyForgotToken = ()=>{
+const VerifyForgotToken = ({notify})=>{
 
-    let {token} = useParams()
+    let navigate = useNavigate()
+    let {token,uid} = useParams()
     let [isValidToken,setIsValidToken] = useState()
     const [values, setValues] = useState({password:"",confirmPassword:""})
     const [errors, setErrors] = useState({})
@@ -40,7 +41,7 @@ const VerifyForgotToken = ()=>{
         setValues({...values, [name]:value})
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         //save updated password
         e.preventDefault();
         let errs = validateForm(values)
@@ -49,6 +50,22 @@ const VerifyForgotToken = ()=>{
         if(Object.keys(errs).length===0){
             //call backend api
             console.log(values)
+            // /reset-password/:token/:userid
+            let item = { newpassword:values.password };
+            let result = await fetch(`http://localhost:4000/user/reset-password/${token}/${uid}`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(item)
+            });
+            result = await result.json();
+            // console.log(result)
+            if(result === 'password changed successfully'){
+                notify('password changed successfully')
+                navigate('/login')
+            }
         }else{
             console.log(errs)
         }
@@ -67,9 +84,9 @@ const VerifyForgotToken = ()=>{
     <div className='container'>
         <div className="w-100 d-flex justify-content-center p-5">
             {
-                isValidToken?<div className="col-lg-6 col-md-10 d-flex flex-column justify-content-center align-items-center shadow p-5">
+                isValidToken?<div className="col-lg-5 col-md-10 d-flex flex-column justify-content-center align-items-center shadow p-5">
                 <img src="https://usa.afsglobal.org/SSO/SelfPasswordRecovery/images/send_reset_password.svg?v=3" alt="" />
-                <h1 className="mt-3">Forgot Password?</h1>
+                <h1 className="mt-3 text-primary">Forgot Password?</h1>
                 <p>Set new password here</p>
                 <form onSubmit={handleSubmit} name="verifyforgotpassword" className="w-100">
                     <div className="form-group my-3 text-start w-100">
@@ -78,12 +95,12 @@ const VerifyForgotToken = ()=>{
                                 name="password" value={values.password} onChange={handleChange} />
                             {
                                 errors.password &&<div className="alert-danger my-3 p-2">
-                                    {replaceJSX(errors.password, ".", <br />)}
+                                    {errors.password}
                                 </div>
                             }
                     </div>
                     <div className="form-group my-3 text-start w-100">
-                            <label className="form-control-placeholder" htmlFor="confirmPassword">Confirm Email</label>
+                            <label className="form-control-placeholder" htmlFor="confirmPassword">Confirm Password</label>
                             <input type="password" className={`form-control ${errors.confirmPassword? "is-invalid" :""}`}
                                 name="confirmPassword" value={values.confirmPassword} onChange={handleChange} />
                             {errors.confirmPassword &&<div className="alert-danger my-3 p-2">{errors.confirmPassword}</div>}

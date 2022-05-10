@@ -64,7 +64,7 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
               <div className='d-flex flex-row fs-4'>
                 <span className='fw-bold'>₹</span>
                 {/* <span className='ms-2'>5000</span> */}
-                {product?<span className='ms-2'>{product?.Bid}</span>:<span className='ms-2'>5000</span>}
+                {product?<span className='ms-2'>{product?.highestBid}</span>:<span className='ms-2'>5000</span>}
               </div>
             </div>
         </div>

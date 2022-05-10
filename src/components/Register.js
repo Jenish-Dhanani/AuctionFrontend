@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import validator from 'validator'
 
-const Register = () => {
+const Register = ({notify}) => {
 
     const formInitialValue = {
         firstName: "",
@@ -35,55 +35,42 @@ const Register = () => {
     async function handleSubmit(event) {
         //console.log("data ", event.target);
         event.preventDefault()
-        setErrors(validateForm(values))
-        setDataIsCorrect(true)
+        // setErrors(validateForm(values))
+        let errs = validateForm(values)
+        // setDataIsCorrect(true)
+        setErrors(errs)
 
-        const firstName = event.target.firstName.value;
-        //console.log("fn ",firstName);
-        const lastName = event.target.lastName.value;
-        const dob = event.target.dob.value;
-        const email = event.target.email.value;
-        const mobileNumber = event.target.mobileNumber.value;
-        const password = event.target.password.value;
-        const aadharNumber = event.target.aadharNumber.value;
-        const address = event.target.address.value;
-        const gender = event.target.gender.value;
+        if(Object.keys(errs).length===0){
+            const firstName = event.target.firstName.value;
+            //console.log("fn ",firstName);
+            const lastName = event.target.lastName.value;
+            const dob = event.target.dob.value;
+            const email = event.target.email.value;
+            const mobileNumber = event.target.mobileNumber.value;
+            const password = event.target.password.value;
+            const aadharNumber = event.target.aadharNumber.value;
+            const address = event.target.address.value;
+            const gender = event.target.gender.value;
 
-        let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
-        // console.warn(item)
-        console.log("data ", item);
-        let result = await fetch("http://localhost:4000/user/register", {
-            method: 'POST',
-            body: JSON.stringify(item),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
+            let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
+            // console.warn(item)
+            console.log("data ", item);
+            let result = await fetch("http://localhost:4000/user/register", {
+                method: 'POST',
+                body: JSON.stringify(item),
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            })
+
+            result = await result.json()
+            console.warn("result", result)
+            if(result.message === 'Record created successfully.'){
+                notify("Account verification link has been sent to your mail.")
             }
-        })
-
-        result = await result.json()
-        console.warn("result", result)
-    }
-
-    useEffect(() => {
-        if (Object.keys(errors).length === 0 && dataIsCorrect) {
-
-            let data = {
-                firstName: values.firstName,
-                lastName: values.lastName,
-                email: values.email,
-                password: values.password,
-                mobileNumber: values.mobileNumber,
-                dob: values.dob,
-                aadharNumber: values.aadharNumber,
-                profile: values.profile,
-                gender: values.gender,
-                address: values.address
-            }
-
-
         }
-    }, [errors])
+    }
 
     const validateForm = (values) => {
         let err = {}

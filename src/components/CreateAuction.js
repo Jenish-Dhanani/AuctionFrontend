@@ -95,6 +95,7 @@ const CreateAuction = () => {
             });
             result = await result.json();
             console.log(result);
+
         }else{
             console.log(errs)
         }
