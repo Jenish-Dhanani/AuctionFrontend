@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Navigation from './Navigation'
+import coupon from '../../src/images/coupon.png'
+import withdraw from '../../src/images/money-withdrawal.png'
+import purse from '../../src/images/purse.png'
 const Wallet = () => {
 
 const [wallet,setWallet] = useState()
@@ -26,6 +29,42 @@ return (
     <div>
         <Navigation />
         <div className='container'>
+        <div class="card my-5">
+            <h5 class="card-header">Your Wallet</h5>
+            <div class="card-body">
+                <h5 class="card-title h1" style={{fontSize:"5rem"}}>₹5,250</h5>
+                <p class="card-text">This reflects your current balance of AuctionPoint wallet.</p>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-sm">
+                    <div class="card my-1">
+                    <h5 class="card-header">Add Money</h5>
+                    <div class="card-body">
+                        <h5 class="card-title h1" style={{fontSize:"5rem"}}>
+                        <img src={purse} alt="" height={100} />
+                        </h5>
+                        <p class="card-text">Add money to your wallet to start bidding on items you love.</p>
+                        <a href="#" class="btn btn-primary">Add Money</a>
+                    </div>
+                </div>
+            </div>
+            <div className="col-sm">
+                    <div class="card my-1">
+                    <h5 class="card-header">Withdraw Money</h5>
+                    <div class="card-body">
+                        <h5 class="card-title h1" style={{fontSize:"5rem"}}>
+                        <img src={withdraw} alt="" height={100} />
+                        </h5>
+                        <p class="card-text">Withdraw money from your AuctionPoint wallet quickly and hassle-free. </p>
+                        <a href="#" class="btn btn-primary">Withdraw Money</a>
+                    </div>
+                </div>
+            </div>
+            {/* <div className="col-sm">
+                    
+            </div> */}
+        </div>
     <div className="row mt-4">
         <div className="col-12 bg-danger text-center text-light">
             <span className='fs-1 fw-bold'>₹ {wallet}</span>
