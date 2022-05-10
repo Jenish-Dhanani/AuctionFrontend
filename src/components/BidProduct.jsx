@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Navigation from "./Navigation";
 
 const BidProduct = () => {
 
@@ -91,6 +92,7 @@ const BidProduct = () => {
 
   return (
     <div className="container">
+      <Navigation />
       {bidProduct && <div className="row gy-5 my-3">
         <div className="col-xs-12 col-md-6 text-center">
           {bidProduct.productImage?.length > 0 ? (
@@ -132,7 +134,7 @@ const BidProduct = () => {
           )}
         </div>
         <div className="col-xs-12 col-md-6">
-          <h1 className="fs-1">{bidProduct.productName}</h1>
+          <h1 className="h1" style={{fontSize:"5rem"}}>{bidProduct.productName}</h1>
           <p className="text-secondary fs-5">{bidProduct.productDescription}</p>
           <br />
           <ul className="list-group list-group-flush fs-5">
@@ -201,8 +203,13 @@ const BidProduct = () => {
 
           <hr />
           <div className="mt-4">
-            <h1 className="fs-3">Recent Bids</h1>
-            <div className="table-responsive mt-3">
+            {/* <h1 className="fs-3">Recent Bids</h1> */}
+            <div class="card">
+  <div class="card-header h4">
+    Top Bids
+  </div>
+  <div class="card-body">
+  <div className="table-responsive">
               <table className="table table-striped">
                 <thead>
                   <tr>
@@ -226,6 +233,9 @@ const BidProduct = () => {
                 </tbody>
               </table>
             </div>
+  </div>
+</div>
+            
           </div>
         </div>
         {console.log(formErrors)}
