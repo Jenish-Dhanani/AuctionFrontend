@@ -1,7 +1,44 @@
 import Footer from "./Footer";
 import Navigation from "./Navigation";
+import { useState } from "react";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FeedBack = ()=>{
+
+    const feedback = {
+        userid: "",
+        date: "",
+        comment: ""
+    }
+
+    const [userFeedback, setfeedback] = useState(feedback);
+
+    async function handleSubmit(event) {
+       
+        event.preventDefault();
+        const userId = sessionStorage.getItem("user");
+        const comments = event.target.message.value;
+        const date = new Date();
+        console.log("Feedback submitted");
+
+        let item = { userId, date, comments };
+        console.log(item);
+
+        let result = await fetch("http://localhost:4000/feedback/add_feedback", {
+            method: 'POST',
+            body: JSON.stringify(item),
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            }
+        })
+
+        result = await result.json()
+        console.warn("result", result)
+    }
+
         return (
             <div>
                 <Navigation/>
@@ -14,26 +51,12 @@ const FeedBack = ()=>{
                                     <div className="col-sm-12 border border-bottom border-primary" />
                                 </div>
                             </div>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="row">
-                                    <div className="col-md-5 border-right">
-                                        <div className="col-md-12 mb-3">
-                                            <div className="">
-                                                <label htmlFor="name" className="text-white form-label">Name</label>
-                                                <input type="text" id="name" name="name" className="form-control text-white bg-dark" required />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12">
-                                            <div className="form-group">
-                                                <label htmlFor="email" className="text-white form-label">Email</label>
-                                                <input type="email" id="email" name="email" className="form-control text-white bg-dark" required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-7 mt-2">
+                                    <div className="col-md-12 mt-2">
                                         <div className="">
                                             <label htmlFor="message" className="form-label text-white">Message</label>
-                                            <textarea type="text" id="message" name="message" rows={4} className="form-control text-white bg-dark" required defaultValue={""} />
+                                            <textarea type="text" id="message" name="message" rows={4} className="form-control text-white bg-dark" required defaultValue={""}/>
                                         </div>
                                     </div>
                                 </div>
