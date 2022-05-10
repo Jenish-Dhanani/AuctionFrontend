@@ -103,6 +103,7 @@ const Wallet = () => {
                     
             </div> */}
         </div>
+    </div>
     <div className="row mt-4">
         <div className="col-12 bg-danger text-center text-light">
             <span className='fs-1 fw-bold'>₹ {wallet}</span>
