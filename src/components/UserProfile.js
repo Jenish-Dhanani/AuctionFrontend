@@ -17,6 +17,15 @@ const UserProfile = () => {
         Password:""
     }
 
+  //   const feedback = {
+  //     firstName: "",
+  //     lastName: "",
+  //     email: "",
+  //     email: "",
+  //     email: "",
+      
+  // }
+
     const showchp = () =>
     {
       
@@ -245,6 +254,10 @@ const UserProfile = () => {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
+                    <div className='d-flex justify-content-evenly align-items-center my-3'>
+                        <label htmlFor="name" className='w-50'>Name :</label>
+                        <input id="name" type="text" className="form-input" />
+                    </div>
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                         <label htmlFor="name" className='w-50'>Name :</label>
                         <input id="name" type="text" className="form-input" />
