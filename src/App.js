@@ -23,13 +23,13 @@ import PageNotFound from './components/PageNotFound';
 import UpdateAuction from './components/UpdateAuction';
 import { ToastContainer, toast } from "react-toastify";
 import { VerifyUser } from './components/VerifyUser';
-if (typeof window !== "undefined") {
-  injectStyle();
-}
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
 import { FeedBack } from './components/Feedback';
+if (typeof window !== "undefined") {
+  injectStyle();
+}
 
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
         <Route element={<PrivateRouter/>}>
             <Route path='/home' element={<Products countdownTimestampMs={1659983662000}/>} />
             {/* <Route path='/product/:id' exact element={<BidPage />} /> */}
-            <Route path='/product/:id' exact element={<BidProduct />} />
+            <Route path='/product/:id' exact element={<BidProduct notify={notify} />} />
             <Route path='/createauction' element={<CreateAuction notify={notify}/>} />
             <Route path='/product/update/:id' element={<UpdateAuction/>} />
             {/* <Route path='/profile' element={<Profile/>} /> */}

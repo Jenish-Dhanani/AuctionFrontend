@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 const Wallet = ({ notify }) => {
   const [wallet, setWallet] = useState();
+  const [isLoading,setIsLoading] = useState(true)
   const userid = sessionStorage.getItem("user");
 
   useEffect(async () => {
@@ -10,6 +11,7 @@ const Wallet = ({ notify }) => {
       .then((json) => {
         console.log(json);
         setWallet(json.amount);
+        setIsLoading(false)
       });
   }, []);
 
@@ -63,7 +65,8 @@ const Wallet = ({ notify }) => {
   return (
     <div>
       <Navigation />
-      <div className="container">
+      {isLoading ? <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center"><div className="spinner-border text-primary"></div></div>
+      : <div className="container">
         <div className="row mt-4">
           <div className="col-12 bg-danger text-center text-light">
             <span className="fs-1 fw-bold">₹ {wallet}</span>
@@ -191,7 +194,7 @@ const Wallet = ({ notify }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

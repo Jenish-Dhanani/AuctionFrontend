@@ -2,11 +2,9 @@ import Navigation from './Navigation';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const Login = ({notify}) => {
+const Login = ({notify,state}) => {
 
     const navigate = useNavigate();
-    const history = useNavigate();
-
     // useEffect(() => {
     // 	if (isAuthenticated()) {
     // 	  navigate("/sign-in");
@@ -78,7 +76,7 @@ const Login = ({notify}) => {
             }else if(result.error === "Password is incorrect"){
                 setErrors({"password":"Password is incorrect"})
                 notify("Password is incorrect")
-            }else if(result.error  === "Please Verify Your Account Before Logging In."){
+            }else if(result.error  === "Please Verify Your Account Before Logging In." || result ==="Please Verify Your Account Before Logging In."){
                 notify("Please Verify Your Account Before Logging In.")
             }
         }
@@ -89,7 +87,12 @@ const Login = ({notify}) => {
             console.log(sessionStorage.getItem("user"));
             // window.location.href = "/";
             notify("Login successfully.")
-            navigate("/home")
+            // navigate("/home")
+            if(location.state){
+                navigate(location.state.from.pathname)
+            }else{
+                navigate("/home")
+            }
         }
         //history.push("/");
     }
