@@ -48,7 +48,7 @@ const DropProduct = () => {
     <>
       <AdminNavbar/>
       <ToastContainer />
-      <div>DropProduct</div>
+      <h3 className='mt-4'>DropProduct</h3>
       <table className="table">
         <thead>
           <tr>
@@ -56,7 +56,8 @@ const DropProduct = () => {
             <th scope="col"> Product Name</th>
             <th scope="col"> Product Description</th>
             <th scope="col"> Product Price</th>
-            <th scope="col"> Status </th>
+            <th scope="col"> Start Date </th>
+            <th scope="col"> End Date </th>
             <th scope="col"> Delete </th>
           </tr>
         </thead>
@@ -68,7 +69,8 @@ const DropProduct = () => {
                   <td>{row.productName}</td>
                   <td>{row.productDescription}</td>
                   <td>{row.productPrice}</td>
-                  <td>{row.status}</td>
+                  <td>{row.startDate.substr(0,10)}</td>
+                  <td>{row.endDate.substr(0,10)}</td>
                   <td><FontAwesomeIcon icon={faTrash} onClick={(e) => handleDelete(row._id, e)}/></td>
               </tr>
           );

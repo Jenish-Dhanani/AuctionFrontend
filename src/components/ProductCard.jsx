@@ -1,8 +1,9 @@
 import React,{useState, useEffect, useRef} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
+const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
   // console.log(product)
+  const userId = sessionStorage.getItem('user')
   const navigate = useNavigate()
 
   const handleProductClick = (pid)=>{
@@ -34,6 +35,33 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
   //     console.log(distance)
   //   }, 1000)
   // }
+
+  const ProceedTransaction = async (auction)=>{
+    //bidderid //sellerid amount date auction id
+    const {_id:auctionId, highestBid:amount, userId:sellerId} = auction;
+    // const bid = auction.Bid.bidInfo[auction.Bid.bidInfo.length-1].Amount;
+    const bidderId = auction.Bid.bidInfo[auction.Bid.bidInfo.length-1].bidderId;
+
+    let data = {
+      bidderId,
+      sellerId,
+      date:new Date(),
+      auctionId,
+      amount
+    }
+
+    let result = await fetch("http://localhost:4000/transaction/add_transaction", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    result = await result.json();
+    notify("Transaction Done.")
+    window.location.reload()
+  }
 
   return (
     <div className='d-flex bg-light overflow-hidden justify-content-center align-items-center flex-column shadow bg-white' style={{ width: '20rem' }}>
@@ -70,8 +98,7 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
             </div>
         </div>
         {/* action */}
-        {role==="onGoingAuctions" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-between align-items-center" >
-              <span className='btn btn-sm fs-4'>❤️</span>
+        {role==="onGoingAuctions" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-end align-items-center" >
               <button className='btn btn-primary w-50' onClick={()=>{handleProductClick(product._id)}}>Bid Now</button>
         </div>}
         {role==="myAuction" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-between align-items-center" >
@@ -79,8 +106,9 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
               <button className='btn btn-primary' onClick={()=>{handleUpdateBtnClick(product._id)}}>Update</button>
               <button className='btn btn-primary' onClick={()=>{handleProductClick(product._id)}}>View</button>
         </div>}
-        {(role==="upComingAuctions" || role==="endedAuctions" )&& <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-end align-items-center" >
-              <button className='btn btn-primary w-50' onClick={()=>{handleProductClick(product._id)}}>View</button>
+        {(role==="upComingAuctions" || role==="endedAuctions" )&& <div className="w-100 px-3 my-1 mb-3 d-flex flex-column justify-content-center align-items-center" >
+              <button className='btn btn-primary w-100' onClick={()=>{handleProductClick(product._id)}}>View</button>
+              {new Date(product.endDate) < new Date() && product.userId === userId && <button className='mt-4 btn btn-primary w-100' onClick={()=>ProceedTransaction(product)}>Proceed Transaction</button>}
         </div>}
 
     </div>
