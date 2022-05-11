@@ -28,6 +28,7 @@ import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
 import { FeedBack } from './components/Feedback';
 import Aboutus  from './components/Aboutus/Aboutus';
+import AdminPrivateRoute from './components/AdminPrivateRoute';
 if (typeof window !== "undefined") {
   injectStyle();
 }
@@ -51,9 +52,11 @@ function App() {
         <Route path='/contactus' element={<Contact/>}/>
 
         {/*Admin Dashboard Updates*/}
-        <Route path='/admin' element={<AdminDashboard/>} />
-        <Route path='/dropProduct' element={<DropProduct/>} />
-        <Route path='/dropUser' element={<DropUser/>} />
+        <Route element={<AdminPrivateRoute/>}>
+          <Route path='/admin' element={<AdminDashboard/>} />
+          <Route path='/dropProduct' element={<DropProduct/>} />
+          <Route path='/dropUser' element={<DropUser/>} />
+        </Route>
 
         <Route element={<PrivateRouter/>}>
             <Route path='/home' element={<Products countdownTimestampMs={1659983662000}/>} />

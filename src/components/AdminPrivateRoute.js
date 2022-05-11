@@ -11,7 +11,7 @@ export function isAdmin() {
 }
 
 function AdminPrivateRoute() {
-    const isAuth = isAuthenticated();
+    const isAuth = isAdmin();
     const location = useLocation();
     if (!isAuth) {
       return (

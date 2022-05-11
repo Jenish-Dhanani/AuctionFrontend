@@ -7,6 +7,10 @@ import { ReactDOM } from 'react';
 import './UserProfile.css';
 import img1 from '../assests/profile_pic.png'
 
+//Toast notification
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const UserProfile = () => {
 
     const userid = sessionStorage.getItem("user");
@@ -105,6 +109,13 @@ const UserProfile = () => {
           body: formData
           });
           result = await result.json();
+          if(result.ok)
+          {
+            toast.success("Profile picture updated successfully");
+          }
+          else{
+            toast.error("Error editing the profile picture");
+          }
           console.log(result);
 
           window.location.reload();
@@ -144,6 +155,13 @@ const UserProfile = () => {
         })
 
         result = await result.json()
+        if(result.ok)
+          {
+            toast.success("Profile updated successfully");
+          }
+          else{
+            toast.error("Error editing the profile");
+          }
         console.warn("result", result) 
        window.location.reload();
       }
@@ -163,6 +181,13 @@ const UserProfile = () => {
         })
 
         result = await result.json()
+        if(result.ok)
+          {
+            toast.success("Profile updated successfully");
+          }
+          else{
+            toast.error("Error editing the profile");
+          }
         console.warn("result", result) 
        window.location.reload();
       }
