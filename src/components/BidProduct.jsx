@@ -197,19 +197,28 @@ const BidProduct = ({ notify }) => {
                   <div className="flex-grow-1 text-end">{seller}</div>
                 </li>
                 <li className="list-group-item d-flex flex-row">
-                  <div className="fw-bold flex-grow-1">Time Left</div>
+                  <div className="fw-bold flex-grow-1">Start Date</div>
+                  <div className="flex-grow-1 text-end">
+                    {new Date(bidProduct.startDate)
+                      .toLocaleString()
+                      .substring(0, 10)}
+                  </div>
+                </li>
+                <li className="list-group-item d-flex flex-row">
+                  <div className="fw-bold flex-grow-1">End Date</div>
                   <div className="flex-grow-1 text-end">
                     {new Date(bidProduct.endDate)
                       .toLocaleString()
-                      .substring(0, 10) +
-                      " " +
-                      bidProduct.endTime}
+                      .substring(0, 10)}
                   </div>
                 </li>
               </ul>
-
+              {console.log(new Date(bidProduct.startDate) <= new Date())}
               {sessionStorage.getItem("user") != bidProduct.userId &&
-                bidProduct.status != "upcoming" && (
+                // bidProduct.status != "upcoming" && (
+                // bidProduct.startDate <= new Date &&
+                new Date(bidProduct.startDate) <= new Date() && new Date(bidProduct.endDate) >= new Date() &&
+                 (
                   <>
                     <br />
                     <br />
@@ -258,7 +267,6 @@ const BidProduct = ({ notify }) => {
                     </div>
                   </>
                 )}
-
               <hr />
               <div className="mt-4">
                 {/* <h1 className="fs-3">Recent Bids</h1> */}

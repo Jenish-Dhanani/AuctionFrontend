@@ -12,6 +12,7 @@ import Testimonials from './Testimonials/Testimonials';
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [onGoingAuctions, setOngoingAuctions] = useState([]);
+  const [upcomingAuctions, setUpcomingAuctions] = useState([]);
 
   // console.log("cardGroup",cardGroups)
 
@@ -28,20 +29,19 @@ const Home = () => {
         }).then(productsArray=>{
 
             let Ongoing = [];
+            let upComing =[];
             productsArray.filter((obj) => {
-              if (
-                getNumberOfDays(
-                  obj.endDate,
-                  new Date().toISOString().substr(0, 10)
-                ) < 0
-              ) {
+              if ( new Date(obj.startDate) <= new Date() && new Date(obj.endDate) >= new Date()) {
                 Ongoing.push(obj);
+              }else if(new Date(obj.startDate) > new Date() && new Date(obj.endDate) >= new Date()){
+                upComing.push(obj)
               }
             });
-            console.log(new Date().toISOString().substr(0, 10));
+            // console.log(new Date().toISOString().substr(0, 10));
 
-            setOngoingAuctions(Ongoing);
-            console.log("Ongoing", Ongoing);
+            setOngoingAuctions(Ongoing)
+            setUpcomingAuctions(upComing)
+            // console.log("Ongoing", Ongoing);
             setIsLoading(false)
         });
     }
@@ -75,7 +75,12 @@ const Home = () => {
         On Going Auctions
       </h1>
       <ItemSlider products={onGoingAuctions} role="onGoingAuctions"/>
-      <CardGroup products={onGoingAuctions.length >5 ? onGoingAuctions.slice(5,onGoingAuctions.length):onGoingAuctions} role="onGoingAuctions" />
+
+      <h1 className="text-center my-4">
+        Upcoming Auctions
+      </h1>
+      <ItemSlider products={upcomingAuctions} role="upComingAuctions"/>
+      {/* <CardGroup products={onGoingAuctions.length >5 ? onGoingAuctions.slice(5,onGoingAuctions.length):onGoingAuctions} role="onGoingAuctions" /> */}
       <Testimonials/>
       <Footer/>
     </div>

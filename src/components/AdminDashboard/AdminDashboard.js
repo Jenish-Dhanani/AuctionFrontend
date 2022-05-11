@@ -6,7 +6,7 @@ const AdminDashboard = () => {
 
   const [userList, setUserList] = useState([])
   const [user_count, setUserCount] = useState([])
-  
+
   const [productsList, setProductList] = useState([]);
   const [auction_count, setAuctionCount] = useState([])
   console.log("Product List",productsList)
@@ -19,7 +19,7 @@ const AdminDashboard = () => {
       .then((json) => {
         setUserList(json)
         console.log("Total User="+user_count);
-        setUserCount(userList.length);
+        setUserCount(json.length);
 
       });
 
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
         .then((json) => {
           setProductList(json)
           console.log("Total Auctions="+auction_count);
-          setAuctionCount(productsList.length);
+          setAuctionCount(json.length);
         })
   }
 
@@ -40,6 +40,7 @@ const AdminDashboard = () => {
   return (
     <>
       <AdminNavbar />
+      <div className="container">
       <div>AdminDashboard</div>
       <div class="row">
         <div class="col-sm-6">
@@ -58,6 +59,7 @@ const AdminDashboard = () => {
            </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

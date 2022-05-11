@@ -59,7 +59,7 @@ function App() {
         </Route>
 
         <Route element={<PrivateRouter/>}>
-            <Route path='/home' element={<Products countdownTimestampMs={1659983662000}/>} />
+            <Route path='/home' element={<Products notify={notify} countdownTimestampMs={1659983662000}/>} />
             {/* <Route path='/product/:id' exact element={<BidPage />} /> */}
             <Route path='/product/:id' exact element={<BidProduct notify={notify} />} />
             <Route path='/createauction' element={<CreateAuction notify={notify}/>} />

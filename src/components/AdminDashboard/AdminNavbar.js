@@ -14,7 +14,7 @@ const AdminNavbar = () => {
     <>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/admin">
             Admin Dashboard
           </Link>
           <button

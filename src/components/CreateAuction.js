@@ -42,6 +42,11 @@ const CreateAuction = ({notify}) => {
             err.description = "Description is required."
         }
 
+        if(values.startdate === values.enddate){
+            err.startdate = "Start Date and End date can not be same."
+            err.enddate = "Start Date and End date can not be same."
+        }
+
         if(values.startdate > values.enddate){
             err.startdate = "start date should be less than end date"
             err.enddate = "start date should be less than end date"

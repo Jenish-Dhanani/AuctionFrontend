@@ -5,7 +5,7 @@ import AdminNavbar from './AdminNavbar';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-  
+
 
 export const DropUser = () => {
 
@@ -44,7 +44,7 @@ export const DropUser = () => {
                     toast.success("User deleted successfully");
                   }
                 })
-      
+
         fetchData()
     }
 
@@ -77,11 +77,11 @@ export const DropUser = () => {
                   <td>{row.lastName}</td>
                   <td>{row.aadharNumber}</td>
                   <td>{row.email}</td>
-                  <td>{row.isVerified}</td>
+                  <td>{row.isVerified?"👍":"😒"}</td>
                   <td><FontAwesomeIcon icon={faTrash} onClick={(e) => handleDelete(row._id, e)}/></td>
               </tr>
           );
-        })}  
+        })}
         </tbody>
       </table>
     </>
