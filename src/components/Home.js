@@ -10,23 +10,59 @@ import Testimonials from './Testimonials/Testimonials';
 
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [onGoingAuctions, setOngoingAuctions] = useState([]);
 
-  const [cardGroups, setCardGroups] = useState([])
   // console.log("cardGroup",cardGroups)
 
   useEffect(() => {
-    async function fetchData(){
-      await fetch(
-        "http://localhost:4000/auction/all")
+    async function fetchData() {
+      await fetch("http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
-          setCardGroups(json)
-        })
+          console.log(json);
+          if (json === undefined) {
+            json = [];
+          }
+          return json;
+        }).then(productsArray=>{
+
+            let Ongoing = [];
+            productsArray.filter((obj) => {
+              if (
+                getNumberOfDays(
+                  obj.endDate,
+                  new Date().toISOString().substr(0, 10)
+                ) < 0
+              ) {
+                Ongoing.push(obj);
+              }
+            });
+            console.log(new Date().toISOString().substr(0, 10));
+
+            setOngoingAuctions(Ongoing);
+            console.log("Ongoing", Ongoing);
+            setIsLoading(false)
+        });
     }
     fetchData()
   }, [])
 
+  function getNumberOfDays(start, end) {
+    const date1 = new Date(start);
+    const date2 = new Date(end);
 
+    // One day in milliseconds
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    // Calculating the time difference between two dates
+    const diffInTime = date2.getTime() - date1.getTime();
+
+    // Calculating the no. of days between two dates
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
+  }
 
 
   return (
@@ -38,18 +74,8 @@ const Home = () => {
       <h1 className="text-center my-4">
         On Going Auctions
       </h1>
-      <ItemSlider products={cardGroups} role="onGoingAuctions"/>
-      <CardGroup products={cardGroups} role="onGoingAuctions" />
-      {/* <CardGroup  /> */}
-
-      {/* <h1 className="text-center mt-4">
-        Current Auctions
-      </h1>
-
-      <h1 className="text-center mt-4">
-        Daily Auctions
-      </h1>
-      <CardGroup products={cardGroups} role="onGoingAuctions"/> */}
+      <ItemSlider products={onGoingAuctions} role="onGoingAuctions"/>
+      <CardGroup products={onGoingAuctions.length >5 ? onGoingAuctions.slice(5,onGoingAuctions.length):onGoingAuctions} role="onGoingAuctions" />
       <Testimonials/>
       <Footer/>
     </div>
