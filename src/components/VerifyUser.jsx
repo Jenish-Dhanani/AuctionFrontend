@@ -18,7 +18,6 @@ useEffect(async ()=>{
         });
     result = await result.json();
 
-    console.log(result);
     // if(result){
     //     setIsPending(true);
     // }

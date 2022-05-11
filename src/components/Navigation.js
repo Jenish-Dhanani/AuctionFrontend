@@ -9,7 +9,6 @@ const Navigation = () => {
   const [pathName, setPathName] = useState();
 
   useEffect(() => {
-    console.log(location.pathname);
     setPathName(location.pathname);
     setTimeout(() => {
       if (sessionStorage.getItem("user")) {
@@ -73,7 +72,7 @@ const Navigation = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <div className="btn btn-danger px-4 mx-4" onClick={LogOut}>
+                  <div className="btn btn-primary px-4 mx-4" onClick={LogOut}>
                     Log Out
                   </div>
                 </li>

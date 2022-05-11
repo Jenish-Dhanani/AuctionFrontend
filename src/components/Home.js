@@ -21,7 +21,6 @@ const Home = () => {
       await fetch("http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           if (json === undefined) {
             json = [];
           }

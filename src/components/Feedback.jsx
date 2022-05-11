@@ -16,15 +16,13 @@ const FeedBack = ()=>{
     const [userFeedback, setfeedback] = useState(feedback);
 
     async function handleSubmit(event) {
-       
+
         event.preventDefault();
         const userId = sessionStorage.getItem("user");
         const comments = event.target.message.value;
         const date = new Date();
-        console.log("Feedback submitted");
 
         let item = { userId, date, comments };
-        console.log(item);
 
         let result = await fetch("http://localhost:4000/feedback/add_feedback", {
             method: 'POST',

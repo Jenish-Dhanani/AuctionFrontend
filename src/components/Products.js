@@ -57,7 +57,6 @@ const Products = ({ notify }) => {
       await fetch("http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           if (json === undefined) {
             json = [];
           }
@@ -92,15 +91,10 @@ const Products = ({ notify }) => {
                 ended.push(obj);
               }
             });
-            console.log(new Date().toISOString().substr(0, 10));
             setMyAuctions(MyArr);
             setUpComingAuctions(UpComing);
             setOngoingAuctions(Ongoing);
             setEndedAuctions(ended);
-            console.log("myarr", MyArr);
-            console.log("Upcoming", UpComing);
-            console.log("Ongoing", Ongoing);
-            console.log("ended", ended);
             setIsLoading(false)
         });
     }

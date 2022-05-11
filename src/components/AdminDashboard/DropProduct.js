@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const DropProduct = () => {
 
   const [productsList, setProductList] = useState([]);
-  console.log("Product List",productsList)
 
   async function fetchData(){
     await fetch(
@@ -30,11 +29,9 @@ const DropProduct = () => {
 
   function handleDelete(user_id, e) {
     e.preventDefault();
-    console.log('You clicked delete.');
     async function deletePost() {
      await fetch("http://localhost:4000/auction/deleteAuction/"+user_id,
                { method: 'DELETE' });
-      console.log('Delete successful');
       toast.success("User deleted successfully");
       //toast error
       fetchData()
@@ -48,7 +45,8 @@ const DropProduct = () => {
     <>
       <AdminNavbar/>
       <ToastContainer />
-      <h3 className='mt-4'>DropProduct</h3>
+      <div className='container'>
+      <h1 className='text-center mt-5 mb-5'>Drop Auction</h1>
       <table className="table">
         <thead>
           <tr>
@@ -77,6 +75,7 @@ const DropProduct = () => {
         })}
         </tbody>
       </table>
+      </div>
     </>
   )
 }

@@ -6,29 +6,7 @@ const Footer = () => {
     <div>
         <footer className="text-center text-lg-start bg-light text-muted">
         <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-          <div className="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-          </div>
-          <div>
-            <Link className="me-4 text-reset" to="https://www.facebook.com/">
-              <i className="fab fa-facebook-f" />
-            </Link>
-            <Link className="me-4 text-reset" to="https://twitter.com/">
-              <i className="fab fa-twitter" />
-            </Link>
-            <Link className="me-4 text-reset" to="https://www.google.com/">
-              <i className="fab fa-google" />
-            </Link>
-            <Link className="me-4 text-reset" to="https://www.instagram.com/">
-              <i className="fab fa-instagram" />
-            </Link>
-            <Link className="me-4 text-reset" to="https://www.linkedin.com/">
-              <i className="fab fa-linkedin" />
-            </Link>
-            <Link className="me-4 text-reset" to="https://github.com/">
-              <i className="fab fa-github" />
-            </Link>
-          </div>
+
         </section>
         <section>
           <div className="container text-center text-md-start mt-5">
@@ -39,18 +17,19 @@ const Footer = () => {
                 </h6>
                 <p>
 
-                {`OnlineAuction.com is secured by 256 bit SSL encryption,
-                has earned the McAfee SECURE certification. Your privacy is highly protected.
-                We process payments using RBI approved payment gateway - CCAvenue & PayPal -
-                a trusted international payment gateway.`}
+                {`An online auction also known as electronic auction or e-auction or eAuction is an auction
+                            which is held over the internet.Like auctions in general,
+                            online auctions come in a variety of types like ascending English auctions, descending
+                            Dutch auctions, first-price sealed-bid, Vickrey auctions and others,
+                            which are sometimes not mutually exclusive.`}
                 </p>
               </div>
-               
+
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase fw-bold mb-4">
                   Useful links
                 </h6>
-        
+
                 <p>
                   <Link className="text-reset" to="/Feedback">FeedBack</Link>
                 </p>
@@ -78,7 +57,7 @@ const Footer = () => {
         </section>
         <div className="text-center p-4" style={{backgroundColor: 'rgba(0, 0, 25, 0.05)'}}>
           © 2021 Copyright:
-          <Link className="text-reset fw-bold" to="/">OnlineAuction.com</Link>
+          <Link className="text-reset fw-bold" to="/">AuctionPoint.com</Link>
         </div>
       </footer>
 

@@ -34,7 +34,6 @@ function Forgotpassword({notify}) {
             let data = {
                 email:values.email
             }
-            console.log(data)
             let result = await fetch("http://localhost:4000/user/forgot-password", {
             method: 'POST',
             headers: {
@@ -44,7 +43,6 @@ function Forgotpassword({notify}) {
             body: JSON.stringify(data)
             });
             result = await result.json();
-            console.log(result)
 
             if(result==='user not found'){
                 notify("Account not found")

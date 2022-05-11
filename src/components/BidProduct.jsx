@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Navigation from "./Navigation";
+import Footer from "./Footer"
 
 const BidProduct = ({ notify }) => {
   const params = useParams();
@@ -23,35 +24,35 @@ const BidProduct = ({ notify }) => {
         await fetch(`http://localhost:4000/Auction/getBid/${params.id}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             userId = json.userId;
             setBidProduct(json);
-            setBidValue(json.highestBid + 1);
+            // if( bidValue < json.highestBid ){
+            //   setBidValue(json.highestBid + 1)
+            // }
           });
         // console.log(bidProduct?.userId);
         await fetch(`http://localhost:4000/user/${userId}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setSeller(json.firstName + " " + json.lastName);
           });
 
         await fetch(`http://localhost:4000/user/${uid}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setUser(json);
           });
 
         await fetch(`http://localhost:4000/wallet/${uid}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setBalance(json.amount);
           });
         setIsLoading(false);
       }
-      fetchData();
+      setInterval(()=>{
+        fetchData();
+      },3000)
     }
   }, [params]);
 
@@ -78,7 +79,6 @@ const BidProduct = ({ notify }) => {
         }
       );
       result = await result.json();
-      console.log(result);
       setBidProduct(result);
     }
   }
@@ -124,6 +124,10 @@ const BidProduct = ({ notify }) => {
     if (balance < value) {
       errors.balance = "Insufficent balance!";
       notify("Insufficent balance! Please add some balance to wallet");
+    }
+    if(bidProduct.Bid.bidInfo[bidProduct.Bid.bidInfo.length-1].bidderId){
+      errors.bidValue = "You already own the highest bid."
+      notify("You already own the highest bid.")
     }
     return errors;
   }
@@ -213,7 +217,6 @@ const BidProduct = ({ notify }) => {
                   </div>
                 </li>
               </ul>
-              {console.log(new Date(bidProduct.startDate) <= new Date())}
               {sessionStorage.getItem("user") != bidProduct.userId &&
                 // bidProduct.status != "upcoming" && (
                 // bidProduct.startDate <= new Date &&
@@ -306,6 +309,7 @@ const BidProduct = ({ notify }) => {
           </div>
         )}
       </div>}
+      <Footer/>
     </div>
   );
 };

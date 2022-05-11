@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import navLogo from "../../images/letter-a.png";
 
 const AdminNavbar = () => {
 
@@ -14,8 +15,15 @@ const AdminNavbar = () => {
     <>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/admin">
-            Admin Dashboard
+        <Link className="navbar-brand d-flex align-items-center" to="/admin">
+            <img
+              src={navLogo}
+              alt=""
+              width="40"
+              height="40"
+              className="d-inline-block align-text-top mx-3"
+            />
+            AuctionPoint
           </Link>
           <button
             className="navbar-toggler"
@@ -46,7 +54,7 @@ const AdminNavbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <div className="btn btn-danger" onClick={LogOut}>
+                  <div className="btn btn-primary" onClick={LogOut}>
                     Log Out
                   </div>
                 </li>
