@@ -72,7 +72,7 @@ const DropProduct = () => {
                   <td><FontAwesomeIcon icon={faTrash} onClick={(e) => handleDelete(row._id, e)}/></td>
               </tr>
           );
-        })}  
+        })}
         </tbody>
       </table>
     </>

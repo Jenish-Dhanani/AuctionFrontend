@@ -7,8 +7,6 @@ import auctionCover from '../../src/images/auction-cover.jpeg'
 const Login = ({notify}) => {
 
     const navigate = useNavigate();
-    const history = useNavigate();
-
     // useEffect(() => {
     // 	if (isAuthenticated()) {
     // 	  navigate("/sign-in");
@@ -107,7 +105,9 @@ const Login = ({notify}) => {
             }else if(result.error === "Password is incorrect"){
                 setErrors({"password":"Password is incorrect"})
                 notify("Password is incorrect")
-            }else if(result.error  === "Please Verify Your Account Before Logging In."){
+            }else if(result.error  === "Please Verify Your Account Before Logging In." || result ==="Please Verify Your Account Before Logging In."){
+                notify("Please Verify Your Account Before Logging In.")
+              else if(result.error  === "Please Verify Your Account Before Logging In."){
                 let result2 = await fetch("http://localhost:4000/admin/admin_login", {
                     method: 'POST',
                     headers: {
@@ -144,7 +144,12 @@ const Login = ({notify}) => {
             console.log(sessionStorage.getItem("user"));
             // window.location.href = "/";
             notify("Login successfully.")
-            navigate("/home")
+            // navigate("/home")
+            if(location.state){
+                navigate(location.state.from.pathname)
+            }else{
+                navigate("/home")
+            }
         }
         //history.push("/");
     }
