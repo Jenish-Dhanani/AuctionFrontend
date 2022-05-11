@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import auctionCover from '../../src/images/auction-cover.jpeg'
 
+
 const Login = ({notify}) => {
 
     const navigate = useNavigate();
@@ -74,13 +75,66 @@ const Login = ({notify}) => {
         {
             console.log(result.error);
             if(result.error === "No user found"){
-                setErrors({"email":"No email Found."})
-                notify("No email Found.")
+                /*setErrors({"email":"No email Found."})
+                notify("No email Found.")*/
+                let result2 = await fetch("http://localhost:4000/admin/admin_login", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(item)
+                });
+                result2 = await result2.json();
+                if(result2.error)
+                {
+                    console.log(result2.error);
+                    if(result2.error === "No user found"){
+                        setErrors({"email":"No user Found."})
+                        notify("No email Found.")
+                    }else if(result2.error === "Password is incorrect"){
+                        setErrors({"password":"Password is incorrect"})
+                        notify("Password is incorrect")
+                    }
+                }
+                else{
+                    sessionStorage.setItem("user", result._id);
+                    //To check if user is admin or not
+                    sessionStorage.setItem("email", "Admin");
+                    notify("Login successfully.")
+                    navigate("/admin")
+                }               
             }else if(result.error === "Password is incorrect"){
                 setErrors({"password":"Password is incorrect"})
                 notify("Password is incorrect")
             }else if(result.error  === "Please Verify Your Account Before Logging In."){
-                notify("Please Verify Your Account Before Logging In.")
+                let result2 = await fetch("http://localhost:4000/admin/admin_login", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(item)
+                });
+                result2 = await result2.json();
+                if(result2.error)
+                {
+                    console.log(result2.error);
+                    if(result2.error === "No user found"){
+                        setErrors({"email":"No Admin Found."})
+                        notify("No admin email Found.")
+                    }else if(result2.error === "Password is incorrect"){
+                        setErrors({"password":"Admin Password is incorrect"})
+                        notify("Admin Password is incorrect")
+                    }
+                }
+                else{
+                    sessionStorage.setItem("user", result._id);
+                    //To check if user is admin or not
+                    sessionStorage.setItem("email", "Admin");
+                    notify("Login successfully.")
+                    navigate("/admin")
+                }               
             }
         }
         else{

@@ -32,6 +32,11 @@ const AdminNavbar = () => {
                 <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to="/dropUser">
+                    Fraud Detection
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/dropUser">
                     Drop User
                   </Link>
                 </li>
