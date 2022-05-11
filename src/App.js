@@ -27,17 +27,11 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
 import { FeedBack } from './components/Feedback';
-<<<<<<< HEAD
-if (typeof window !== "undefined") {
-  injectStyle();
-}
-=======
 import Aboutus  from './components/Aboutus/Aboutus';
 if (typeof window !== "undefined") {
   injectStyle();
 }
 
->>>>>>> 29a150b5350bd33ab3f93962383cd3547825b5f0
 
 
 function App() {
@@ -47,7 +41,7 @@ function App() {
   }
   return (
     <Router>
-      <Routes>  
+      <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/feedback' element={<FeedBack/>} />
         <Route path='/Aboutus' element={<Aboutus/>} />

@@ -34,18 +34,18 @@ const Home = () => {
       <Navigation />
       <Header/>
       {/* {timerComponents.length ? timerComponents : <span>Time's up!</span>} */}
-     
+
       <h1 className="text-center my-4">
         On Going Auctions
       </h1>
       <ItemSlider products={cardGroups} role="onGoingAuctions"/>
+      <CardGroup products={cardGroups} role="onGoingAuctions" />
       {/* <CardGroup  /> */}
-      
+
       {/* <h1 className="text-center mt-4">
         Current Auctions
       </h1>
-      <CardGroup products={cardGroups} role="onGoingAuctions" />
-      
+
       <h1 className="text-center mt-4">
         Daily Auctions
       </h1>
