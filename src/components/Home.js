@@ -26,9 +26,6 @@ const Home = () => {
     fetchData()
   }, [])
 
-
-
-
   return (
     <div>
       <Navigation />
