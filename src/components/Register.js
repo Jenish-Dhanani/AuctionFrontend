@@ -2,6 +2,7 @@ import Navigation from './Navigation';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import validator from 'validator'
+import auctionCover from '../../src/images/auction-cover.jpeg'
 
 const Register = ({notify}) => {
 
@@ -148,18 +149,18 @@ const Register = ({notify}) => {
     };
 
     return (
-        <div>
+        <div style={{backgroundColor:"#f2f2f2", minHeight:"100vh"}}>
             <Navigation />
             <div className="container">
                 <div className="row justify-content-center my-4">
-                    <div className="col-md-7 col-lg-5 shadow p-3">
+                    <div className="col-md-7 col-lg-5 shadow p-3" style={{backgroundColor:"white"}}>
                         <div className="rounded w-100"
-                            style={{ backgroundImage: `url("https://preview.colorlib.com/theme/bootstrap/login-form-15/images/xbg-1.jpg.pagespeed.ic.EtoN2PmO7Y.webp")`, height: "200px" }}>
+                            style={{ backgroundImage: `url(${auctionCover})`, height: "200px", backgroundSize: "140%", backgroundRepeat: "no-repeat" }}>
                         </div>
                         <div className="p-3">
                             <div className="d-flex">
                                 <div className="w-100">
-                                    <h3 className="mb-4">Sign Up</h3>
+                                    <h3 className="mb-4 h1">Sign Up</h3>
                                 </div>
                             </div>
                             {sucessMessage.length !== 0 && <div className="alert alert-success">{sucessMessage}</div>}
@@ -246,9 +247,9 @@ const Register = ({notify}) => {
                                         Up</button>
                                 </div>
                                 <div className="form-group mt-5">
-                                    <div className="w-100 text-end">
+                                    <div className="w-100 text-center">
                                         <p>Not a member?
-                                            {" "}<Link data-toggle="tab" to="/login">SignIn</Link>
+                                            {" "}<Link data-toggle="tab" to="/login">Sign In</Link>
                                         </p>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@ const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
     items: 5,
-    slidesToSlide:5
+    slidesToSlide: 5
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -27,27 +27,22 @@ const responsive = {
 
 
 
-const ItemSlider = () => {
-    return (
-      <Carousel responsive={responsive}
+const ItemSlider = ({ products, role, handleOnDeleteBtnClick }) => {
+  return (
+    <Carousel responsive={responsive}
       containerClass="bg-dark p-5"
       showDots={true}
       ssr={true} // means to render carousel on server-side.
       autoPlaySpeed={4000}
       autoPlay={true}
-      >
+    >
 
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
-      <ProductCard role="onGoingAuctions"></ProductCard>
+      <div className="container d-flex justify-content-center align-items-center flex-wrap p-3 mb-4" style={{ gap: "40px" }}>
+        {products && products.sort((a, b) => { return b.productBasePrice - a.productBasePrice }).map((product, index) => {
+          return <ProductCard product={product} key={index} role={role} handleOnDeleteBtnClick={handleOnDeleteBtnClick} />
+        })}
+      </div>
     </Carousel>)
 }
 
-export {ItemSlider}
+export { ItemSlider }

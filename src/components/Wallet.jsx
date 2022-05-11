@@ -1,9 +1,20 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 const Wallet = ({ notify }) => {
   const [wallet, setWallet] = useState();
   const [isLoading,setIsLoading] = useState(true)
   const userid = sessionStorage.getItem("user");
+=======
+
+import React, { useEffect, useState } from 'react'
+import Navigation from './Navigation'
+import coupon from '../../src/images/coupon.png'
+import withdraw from '../../src/images/money-withdrawal.png'
+import purse from '../../src/images/purse.png'
+const Wallet = () => {
+
+>>>>>>> 29a150b5350bd33ab3f93962383cd3547825b5f0
 
   useEffect(async () => {
     await fetch(`http://localhost:4000/wallet/${userid}`)
@@ -64,6 +75,7 @@ const Wallet = ({ notify }) => {
 
   return (
     <div>
+<<<<<<< HEAD
       <Navigation />
       {isLoading ? <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center"><div className="spinner-border text-primary"></div></div>
       : <div className="container">
@@ -71,6 +83,51 @@ const Wallet = ({ notify }) => {
           <div className="col-12 bg-danger text-center text-light">
             <span className="fs-1 fw-bold">₹ {wallet}</span>
           </div>
+=======
+        <Navigation />
+        <div className='container'>
+        <div class="card my-5">
+            <h5 class="card-header">Your Wallet</h5>
+            <div class="card-body">
+                <h5 class="card-title h1" style={{fontSize:"5rem"}}>₹5,250</h5>
+                <p class="card-text">This reflects your current balance of AuctionPoint wallet.</p>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-sm">
+                    <div class="card my-1">
+                    <h5 class="card-header">Add Money</h5>
+                    <div class="card-body">
+                        <h5 class="card-title h1" style={{fontSize:"5rem"}}>
+                        <img src={purse} alt="" height={100} />
+                        </h5>
+                        <p class="card-text">Add money to your wallet to start bidding on items you love.</p>
+                        <a href="#" class="btn btn-primary">Add Money</a>
+                    </div>
+                </div>
+            </div>
+            <div className="col-sm">
+                    <div class="card my-1">
+                    <h5 class="card-header">Withdraw Money</h5>
+                    <div class="card-body">
+                        <h5 class="card-title h1" style={{fontSize:"5rem"}}>
+                        <img src={withdraw} alt="" height={100} />
+                        </h5>
+                        <p class="card-text">Withdraw money from your AuctionPoint wallet quickly and hassle-free. </p>
+                        <a href="#" class="btn btn-primary">Withdraw Money</a>
+                    </div>
+                </div>
+            </div>
+            {/* <div className="col-sm">
+                    
+            </div> */}
+        </div>
+    </div>
+    <div className="row mt-4">
+        <div className="col-12 bg-danger text-center text-light">
+            <span className='fs-1 fw-bold'>₹ {wallet}</span>
+
+>>>>>>> 29a150b5350bd33ab3f93962383cd3547825b5f0
         </div>
         <div className="row">
           <div className="col-12 bg-sucess bg-secondary text-light p-4 d-flex justify-content-evenly">

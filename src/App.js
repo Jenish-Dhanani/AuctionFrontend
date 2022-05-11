@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 import Products from './components/Products';
 import CreateAuction from './components/CreateAuction';
@@ -27,9 +27,17 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import { DropUser } from './components/AdminDashboard/DropUser';
 import DropProduct from './components/AdminDashboard/DropProduct';
 import { FeedBack } from './components/Feedback';
+<<<<<<< HEAD
 if (typeof window !== "undefined") {
   injectStyle();
 }
+=======
+import Aboutus  from './components/Aboutus/Aboutus';
+if (typeof window !== "undefined") {
+  injectStyle();
+}
+
+>>>>>>> 29a150b5350bd33ab3f93962383cd3547825b5f0
 
 
 function App() {
@@ -39,9 +47,10 @@ function App() {
   }
   return (
     <Router>
-      <Routes>
+      <Routes>  
         <Route path='/' element={<Home/>} />
         <Route path='/feedback' element={<FeedBack/>} />
+        <Route path='/Aboutus' element={<Aboutus/>} />
         {/* <Route path='/aboutus' element={<Aboutus/>} /> */}
         <Route path='/register' element={<Register notify={notify}/>} />
         <Route path='/login' element={<Login notify={notify}/>} />
