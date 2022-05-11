@@ -10,6 +10,7 @@ import img1 from '../assests/profile_pic.png'
 const UserProfile = () => {
 
     const userid = sessionStorage.getItem("user");
+    console.log(userid);
 
     const [userData, setUserData] = useState({})
     const [updateUser, setUpdateUser] = useState({})
@@ -111,23 +112,29 @@ const UserProfile = () => {
 
     async function handleEditProfile(event)
     {
+      console.log('hello');
       event.preventDefault();
-     
-      const firstName = event.target.name.value;
-      const address = event.target.address.value;
-      const mobileNumber = event.target.contactNumber.value;
-      const email = event.target.email.value;
-      const password = event.target.password.value;
-      const cnfrm_passwd = event.target.confPassword.value;
-      
+      console.log('hie');
+      const firstName = updateUser.firstName;
+      console.log(firstName);
+      const address = updateUser.address;
+      console.log(address);
+      const mobileNumber = updateUser.mobileNumber;
+      console.log(mobileNumber);
+      const email = updateUser.email;
+      console.log(email);
+      const password = document.getElementById('password').value;
+      console.log(password);
+      const cnfrm_passwd = document.getElementById('confPassword').value;
+      console.log(cnfrm_passwd);
       if((password!=null && cnfrm_passwd!=null)&&(password==cnfrm_passwd))
       {
-        console.log("Profile edited");
+        console.log("Profile edited1");
 
         let item = { firstName, address, mobileNumber, email, password };
         console.log(item);
 
-        let result = await fetch("http://localhost:4000/user/updateUser"+userid, {
+        let result = await fetch("http://localhost:4000/user/updateUser/"+userid, {
             method: 'PUT',
             body: JSON.stringify(item),
             headers: {
@@ -138,6 +145,7 @@ const UserProfile = () => {
 
         result = await result.json()
         console.warn("result", result) 
+       window.location.reload();
       }
       else{
         console.log("Profile edited");
@@ -145,7 +153,7 @@ const UserProfile = () => {
         let item = { firstName, address, mobileNumber, email };
         console.log(item);
 
-        let result = await fetch("http://localhost:4000/user/updateUser"+userid, {
+        let result = await fetch("http://localhost:4000/user/updateUser/"+userid, {
             method: 'PUT',
             body: JSON.stringify(item),
             headers: {
@@ -156,6 +164,7 @@ const UserProfile = () => {
 
         result = await result.json()
         console.warn("result", result) 
+       window.location.reload();
       }
     }
 
@@ -372,15 +381,11 @@ const UserProfile = () => {
                     <h5 className="modal-title" id="EditProfileLabel">Edit Profile</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form onSubmit={handleEditProfile}>
+                <form>
                 <div className="modal-body">
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                         <label htmlFor="name" className='w-50'>Name :</label>
-                        <input id="name" type="text" name="firstName" className="form-input" value={updateUser.firstName || ""} onChange={handleChange}/>
-                    </div>
-                    <div className='d-flex justify-content-evenly align-items-center my-3'>
-                        <label htmlFor="name" className='w-50'>Name :</label>
-                        <input id="name" type="text" className="form-input" />
+                        <input id="firstName" type="text" name="firstName" className="form-input" value={updateUser.firstName || ""} onChange={handleChange}/>
                     </div>
                     <div className='d-flex justify-content-evenly align-items-center my-3'>
                             <label htmlFor="address" className='w-50'>Address :</label>
