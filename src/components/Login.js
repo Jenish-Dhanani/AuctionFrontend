@@ -67,11 +67,8 @@ const Login = ({notify}) => {
             body: JSON.stringify(item)
         });
         result = await result.json();
-        console.log("login result is");
-        console.log(result);
         if(result.error)
         {
-            console.log(result.error);
             if(result.error === "No user found"){
                 /*setErrors({"email":"No email Found."})
                 notify("No email Found.")*/
@@ -86,7 +83,6 @@ const Login = ({notify}) => {
                 result2 = await result2.json();
                 if(result2.error)
                 {
-                    console.log(result2.error);
                     if(result2.error === "No user found"){
                         setErrors({"email":"No user Found."})
                         notify("No email Found.")
@@ -101,7 +97,7 @@ const Login = ({notify}) => {
                     sessionStorage.setItem("email", "Admin");
                     notify("Login successfully.")
                     navigate("/admin")
-                }               
+                }
             }else if(result.error === "Password is incorrect"){
                 setErrors({"password":"Password is incorrect"})
                 notify("Password is incorrect")
@@ -119,7 +115,6 @@ const Login = ({notify}) => {
                 result2 = await result2.json();
                 if(result2.error)
                 {
-                    console.log(result2.error);
                     if(result2.error === "No user found"){
                         setErrors({"email":"No Admin Found."})
                         notify("No admin email Found.")
@@ -134,14 +129,13 @@ const Login = ({notify}) => {
                     sessionStorage.setItem("email", "Admin");
                     notify("Login successfully.")
                     navigate("/admin")
-                }               
+                }
             }
         }
         else{
             sessionStorage.setItem("user", result._id);
             //To check if user is admin or not
             sessionStorage.setItem("email", item.email);
-            console.log(sessionStorage.getItem("user"));
             // window.location.href = "/";
             notify("Login successfully.")
             // navigate("/home")

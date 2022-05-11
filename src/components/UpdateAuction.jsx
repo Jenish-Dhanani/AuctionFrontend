@@ -20,7 +20,6 @@ const UpdateAuction = () => {
         if(result.error)
             console.log(result.error);
         else{
-            console.log(result)
             setProduct({
                 title:result.productName,
                 price:result.productPrice,
@@ -93,7 +92,6 @@ const UpdateAuction = () => {
             formData.append("productDescription",product.description);
             formData.append("startDate",product.startdate);
             formData.append("endDate",product.enddate);
-            console.log(formData);
         }else{
             console.log(errs)
         }

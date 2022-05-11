@@ -9,7 +9,6 @@ const Navigation = () => {
   const [pathName, setPathName] = useState();
 
   useEffect(() => {
-    console.log(location.pathname);
     setPathName(location.pathname);
     setTimeout(() => {
       if (sessionStorage.getItem("user")) {

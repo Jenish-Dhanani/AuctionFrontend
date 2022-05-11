@@ -13,7 +13,6 @@ const Wallet = ({ notify }) => {
         await fetch(`http://localhost:4000/wallet/${userid}`)
             .then((res) => res.json())
             .then((json) => {
-                console.log(json);
                 setWallet(json.amount);
                 setIsLoading(false);
             });

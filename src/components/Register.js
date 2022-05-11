@@ -55,7 +55,6 @@ const Register = ({notify}) => {
 
             let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
             // console.warn(item)
-            console.log("data ", item);
             let result = await fetch("http://localhost:4000/user/register", {
                 method: 'POST',
                 body: JSON.stringify(item),
@@ -66,7 +65,6 @@ const Register = ({notify}) => {
             })
 
             result = await result.json()
-            console.warn("result", result)
             if(result.message === 'Record created successfully.'){
                 notify("Account verification link has been sent to your mail.")
             }
@@ -142,11 +140,6 @@ const Register = ({notify}) => {
         }
         return err
     }
-
-
-    const onSubmit = (data) => {
-        console.log(data);
-    };
 
     return (
         <div style={{backgroundColor:"#f2f2f2", minHeight:"100vh"}}>

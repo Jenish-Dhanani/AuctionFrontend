@@ -2,7 +2,6 @@ import React from "react";
 import Navigation from "./Navigation";
 import Footer from "./Footer"
 import { useState, useEffect } from "react";
-import { ReactDOM } from "react";
 
 import "./UserProfile.css";
 import img1 from "../assests/profile_pic.png";
@@ -49,7 +48,6 @@ const UserProfile = () => {
                 .then((res) => res.json())
                 .then(async (json) => {
                     for (let item of json) {
-                        console.log("auction model id=" + item.auctionId);
 
                         let result = await fetch(`http://localhost:4000/auction/getBid/${item.auctionId}`)
 
@@ -78,7 +76,6 @@ const UserProfile = () => {
 
     async function handleEditProfilePic() {
         let profile_pic = document.getElementById("profilePic").files[0];
-        console.log(profile_pic);
         const formData = new FormData();
         formData.append("avtar", profile_pic); // appending every file to formdata
 
@@ -98,37 +95,24 @@ const UserProfile = () => {
         } else {
             toast.error("Error editing the profile picture");
         }
-        console.log(result);
-
         window.location.reload();
     }
 
     async function handleEditProfile(event) {
-        console.log("hello");
         event.preventDefault();
-        console.log("hie");
         const firstName = updateUser.firstName;
-        console.log(firstName);
         const address = updateUser.address;
-        console.log(address);
         const mobileNumber = updateUser.mobileNumber;
-        console.log(mobileNumber);
         const email = updateUser.email;
-        console.log(email);
         const password = document.getElementById("password").value;
-        console.log(password);
         const cnfrm_passwd = document.getElementById("confPassword").value;
-        console.log(cnfrm_passwd);
         if (
             password != null &&
             cnfrm_passwd != null &&
             password == cnfrm_passwd
         ) {
-            console.log("Profile edited1");
 
             let item = { firstName, address, mobileNumber, email, password };
-            console.log(item);
-
             let result = await fetch(
                 "http://localhost:4000/user/updateUser/" + userid,
                 {
@@ -150,11 +134,8 @@ const UserProfile = () => {
             console.warn("result", result);
             window.location.reload();
         } else {
-            console.log("Profile edited");
 
             let item = { firstName, address, mobileNumber, email };
-            console.log(item);
-
             let result = await fetch(
                 "http://localhost:4000/user/updateUser/" + userid,
                 {

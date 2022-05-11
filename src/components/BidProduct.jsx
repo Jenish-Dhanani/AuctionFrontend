@@ -24,7 +24,6 @@ const BidProduct = ({ notify }) => {
         await fetch(`http://localhost:4000/Auction/getBid/${params.id}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             userId = json.userId;
             setBidProduct(json);
             // if( bidValue < json.highestBid ){
@@ -35,21 +34,18 @@ const BidProduct = ({ notify }) => {
         await fetch(`http://localhost:4000/user/${userId}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setSeller(json.firstName + " " + json.lastName);
           });
 
         await fetch(`http://localhost:4000/user/${uid}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setUser(json);
           });
 
         await fetch(`http://localhost:4000/wallet/${uid}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setBalance(json.amount);
           });
         setIsLoading(false);
@@ -83,7 +79,6 @@ const BidProduct = ({ notify }) => {
         }
       );
       result = await result.json();
-      console.log(result);
       setBidProduct(result);
     }
   }
@@ -222,7 +217,6 @@ const BidProduct = ({ notify }) => {
                   </div>
                 </li>
               </ul>
-              {console.log(new Date(bidProduct.startDate) <= new Date())}
               {sessionStorage.getItem("user") != bidProduct.userId &&
                 // bidProduct.status != "upcoming" && (
                 // bidProduct.startDate <= new Date &&

@@ -93,7 +93,7 @@ const CreateAuction = ({notify}) => {
             formData.append("productDescription",product.description);
             formData.append("startDate",product.startdate);
             formData.append("endDate",product.enddate);
-            console.log(formData);
+
             let result = await fetch("http://localhost:4000/auction/add-product", {
             method: 'POST',
             headers: {
@@ -102,7 +102,6 @@ const CreateAuction = ({notify}) => {
             body: formData
             });
             result = await result.json();
-            console.log(result);
             if(result === "Product Added"){
                 notify("Product Added.")
                 navigate('/home')

@@ -9,8 +9,6 @@ const AdminDashboard = () => {
 
   const [productsList, setProductList] = useState([]);
   const [auction_count, setAuctionCount] = useState([])
-  console.log("Product List",productsList)
-  console.log("Users List",userList)
 
   async function fetchData(){
     await fetch(
@@ -18,7 +16,6 @@ const AdminDashboard = () => {
       .then((res) => res.json())
       .then((json) => {
         setUserList(json)
-        console.log("Total User="+user_count);
         setUserCount(json.length);
 
       });
@@ -28,7 +25,6 @@ const AdminDashboard = () => {
         .then((res) => res.json())
         .then((json) => {
           setProductList(json)
-          console.log("Total Auctions="+auction_count);
           setAuctionCount(json.length);
         })
   }
@@ -63,24 +59,6 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
-      {/* <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Total Users</h5>
-              <h5 class="card-title">{user_count}</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"> Total Auction </h5>
-              <h5 class="card-title"> {auction_count} </h5>
-           </div>
-          </div>
-        </div>
-      </div> */}
       </div>
     </>
   )
