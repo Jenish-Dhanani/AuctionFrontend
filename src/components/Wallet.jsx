@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import React, { useEffect, useState } from "react";
+import Navigation from "./Navigation";
+const Wallet = ({ notify }) => {
+  const [wallet, setWallet] = useState();
+  const [isLoading,setIsLoading] = useState(true)
+  const userid = sessionStorage.getItem("user");
+=======
 
 import React, { useEffect, useState } from 'react'
 import Navigation from './Navigation'
@@ -6,6 +14,7 @@ import withdraw from '../../src/images/money-withdrawal.png'
 import purse from '../../src/images/purse.png'
 const Wallet = () => {
 
+>>>>>>> 29a150b5350bd33ab3f93962383cd3547825b5f0
 
   useEffect(async () => {
     await fetch(`http://localhost:4000/wallet/${userid}`)
@@ -13,6 +22,7 @@ const Wallet = () => {
       .then((json) => {
         console.log(json);
         setWallet(json.amount);
+        setIsLoading(false)
       });
   }, []);
 
@@ -65,6 +75,15 @@ const Wallet = () => {
 
   return (
     <div>
+<<<<<<< HEAD
+      <Navigation />
+      {isLoading ? <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center"><div className="spinner-border text-primary"></div></div>
+      : <div className="container">
+        <div className="row mt-4">
+          <div className="col-12 bg-danger text-center text-light">
+            <span className="fs-1 fw-bold">₹ {wallet}</span>
+          </div>
+=======
         <Navigation />
         <div className='container'>
         <div class="card my-5">
@@ -108,6 +127,7 @@ const Wallet = () => {
         <div className="col-12 bg-danger text-center text-light">
             <span className='fs-1 fw-bold'>₹ {wallet}</span>
 
+>>>>>>> 29a150b5350bd33ab3f93962383cd3547825b5f0
         </div>
         <div className="row">
           <div className="col-12 bg-sucess bg-secondary text-light p-4 d-flex justify-content-evenly">
@@ -231,7 +251,7 @@ const Wallet = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
