@@ -107,7 +107,7 @@ const Login = ({notify}) => {
                 notify("Password is incorrect")
             }else if(result.error  === "Please Verify Your Account Before Logging In." || result ==="Please Verify Your Account Before Logging In."){
                 notify("Please Verify Your Account Before Logging In.")
-              else if(result.error  === "Please Verify Your Account Before Logging In."){
+            }else if(result.error  === "Please Verify Your Account Before Logging In."){
                 let result2 = await fetch("http://localhost:4000/admin/admin_login", {
                     method: 'POST',
                     headers: {
