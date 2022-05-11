@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Navigation from "./Navigation";
+import Footer from "./Footer"
 
 const BidProduct = ({ notify }) => {
   const params = useParams();
@@ -26,7 +27,9 @@ const BidProduct = ({ notify }) => {
             console.log(json);
             userId = json.userId;
             setBidProduct(json);
-            setBidValue(json.highestBid + 1);
+            // if( bidValue < json.highestBid ){
+            //   setBidValue(json.highestBid + 1)
+            // }
           });
         // console.log(bidProduct?.userId);
         await fetch(`http://localhost:4000/user/${userId}`)
@@ -51,7 +54,9 @@ const BidProduct = ({ notify }) => {
           });
         setIsLoading(false);
       }
-      fetchData();
+      setInterval(()=>{
+        fetchData();
+      },3000)
     }
   }, [params]);
 
@@ -124,6 +129,10 @@ const BidProduct = ({ notify }) => {
     if (balance < value) {
       errors.balance = "Insufficent balance!";
       notify("Insufficent balance! Please add some balance to wallet");
+    }
+    if(bidProduct.Bid.bidInfo[bidProduct.Bid.bidInfo.length-1].bidderId){
+      errors.bidValue = "You already own the highest bid."
+      notify("You already own the highest bid.")
     }
     return errors;
   }
@@ -306,6 +315,7 @@ const BidProduct = ({ notify }) => {
           </div>
         )}
       </div>}
+      <Footer/>
     </div>
   );
 };

@@ -41,8 +41,29 @@ const AdminDashboard = () => {
     <>
       <AdminNavbar />
       <div className="container">
-      <div>AdminDashboard</div>
-      <div class="row">
+      <h1 className='text-center mt-5 mb-5'>Admin Dashboard</h1>
+      <div className="d-flex mt-5 mb-4 fs-4 flex-wrap justify-content-center align-items-center" style={{gap:"1em"}}>
+        <div className="dashboard-tile">
+          <div className={`shadow rounded dashboard-tile-content bg-primary text-light`}>
+              <span>
+                  <span className="fw-bolder fs-2">Total Users</span>
+                  <br />
+                  <span className="text-white">{user_count}</span>
+              </span>
+          </div>
+        </div>
+        {/*  */}
+        <div className="dashboard-tile">
+          <div className={`shadow rounded dashboard-tile-content bg-primary text-light`}>
+              <span>
+                  <span className="fw-bolder fs-2">Total Auction</span>
+                  <br />
+                  <span className="text-white">{auction_count}</span>
+              </span>
+          </div>
+        </div>
+      </div>
+      {/* <div class="row">
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
@@ -59,7 +80,7 @@ const AdminDashboard = () => {
            </div>
           </div>
         </div>
-      </div>
+      </div> */}
       </div>
     </>
   )

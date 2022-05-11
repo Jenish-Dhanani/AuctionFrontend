@@ -55,7 +55,8 @@ export const DropUser = () => {
     <>
       <AdminNavbar/>
       <ToastContainer />
-      <h2>Drop User</h2>
+      <div className='container'>
+      <h1 className='text-center mt-5 mb-5'>Drop User</h1>
         <table className="table">
         <thead>
           <tr>
@@ -77,13 +78,14 @@ export const DropUser = () => {
                   <td>{row.lastName}</td>
                   <td>{row.aadharNumber}</td>
                   <td>{row.email}</td>
-                  <td>{row.isVerified?"👍":"😒"}</td>
+                  <td>{row.isVerified+""}</td>
                   <td><FontAwesomeIcon icon={faTrash} onClick={(e) => handleDelete(row._id, e)}/></td>
               </tr>
           );
         })}
         </tbody>
       </table>
+      </div>
     </>
   )
 }

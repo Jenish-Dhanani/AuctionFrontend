@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
-
+import Footer from "./Footer"
 const CreateAuction = ({notify}) => {
     const navigate = useNavigate()
 
@@ -207,7 +207,9 @@ const CreateAuction = ({notify}) => {
                 </div>
 
             </div>
+            <Footer/>
         </div>
+
     )
 }
 

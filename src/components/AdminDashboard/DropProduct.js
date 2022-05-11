@@ -48,7 +48,8 @@ const DropProduct = () => {
     <>
       <AdminNavbar/>
       <ToastContainer />
-      <h3 className='mt-4'>DropProduct</h3>
+      <div className='container'>
+      <h1 className='text-center mt-5 mb-5'>Drop Auction</h1>
       <table className="table">
         <thead>
           <tr>
@@ -77,6 +78,7 @@ const DropProduct = () => {
         })}
         </tbody>
       </table>
+      </div>
     </>
   )
 }
