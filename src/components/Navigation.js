@@ -1,39 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import navLogo from '../../src/images/letter-a.png'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import navLogo from "../../src/images/letter-a.png";
 
 const Navigation = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
-  const [isLoggedIn,setIsLoggedIn] = useState()
-  const [pathName,setPathName] = useState()
+  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [pathName, setPathName] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(location.pathname);
-    setPathName(location.pathname)
-    setTimeout(()=>{
-      if(sessionStorage.getItem("user")){
-        setIsLoggedIn(true)
+    setPathName(location.pathname);
+    setTimeout(() => {
+      if (sessionStorage.getItem("user")) {
+        setIsLoggedIn(true);
       }
-    },0)
-  },[])
+    }, 0);
+  }, []);
 
-  const LogOut = ()=>{
-    sessionStorage.removeItem("user")
-    navigate("/login")
-  }
+  const LogOut = () => {
+    sessionStorage.removeItem("user");
+    navigate("/login");
+  };
 
-    return (
-
-      <>
+  return (
+    <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-5">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-          <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src={navLogo} alt="" width="40" height="40" class="d-inline-block align-text-top mx-3"/>
-      AuctionPoint
-    </a>
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img
+              src={navLogo}
+              alt=""
+              width="40"
+              height="40"
+              className="d-inline-block align-text-top mx-3"
+            />
+            AuctionPoint
           </Link>
           <button
             className="navbar-toggler"
@@ -47,9 +49,8 @@ const Navigation = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse ms-auto" id="navbarNav">
-            {
-              isLoggedIn && pathName!=='/login' && pathName !== '/register'?
-                <ul className="navbar-nav ms-auto">
+            {isLoggedIn && pathName !== "/login" && pathName !== "/register" ? (
+              <ul className="navbar-nav ms-auto">
                 {/* {(!isLogin || pathname=='/sign-in' || pathname=='/sign-up') &&<> */}
                 <li className="nav-item">
                   <Link className="nav-link px-4" to="/home">
@@ -77,26 +78,25 @@ const Navigation = () => {
                   </div>
                 </li>
               </ul>
-              :
+            ) : (
               <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="btn btn-outline-light px-5" to="/login">
-                  Sign In
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="btn btn-primary px-5 mx-3" to="/register">
-                  Sign Up
-                </Link>
-              </li>
-            </ul>
-          }
+                <li className="nav-item">
+                  <Link className="btn btn-outline-light px-5" to="/login">
+                    Sign In
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="btn btn-primary px-5 mx-3" to="/register">
+                    Sign Up
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>
     </>
+  );
+};
 
-    )
-}
-
-export default Navigation
+export default Navigation;
