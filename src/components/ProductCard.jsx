@@ -55,9 +55,10 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick}) => {
         <div className='w-100 p-3 d-flex flex-row justify-content-between align-items-center'>
             {/* time left */}
             <div className="d-flex flex-column">
-              <span>Time Left</span>
-              {/* <span className='fw-bold'>{(product?.endDate)}</span> */}
-              <span className='text-uppercase text-secondary' style={{fontSize:"0.7em"}}>days hrs min sec</span>
+              {/* <span>Time Left</span> */}
+              <span>End Date:</span>
+              <span className='fw-bold'>{(product?.endDate.substring(0,10))}</span>
+              {/* <span className='text-uppercase text-secondary' style={{fontSize:"0.7em"}}>days hrs min sec</span> */}
             </div>
             {/* amount */}
             <div className="d-flex flex-column justify-content-between align-items-center">
