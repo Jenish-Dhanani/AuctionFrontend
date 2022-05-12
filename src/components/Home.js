@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("https://auctionpointfrontend.herokuapp.com/auction/all")
+      await fetch("http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
           if (json === undefined) {

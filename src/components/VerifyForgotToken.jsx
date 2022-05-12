@@ -49,7 +49,7 @@ const VerifyForgotToken = ({notify})=>{
         if(Object.keys(errs).length===0){
             //call backend api
             let item = { newpassword:values.password };
-            let result = await fetch(`https://auctionpointfrontend.herokuapp.com/user/reset-password/${token}/${uid}`, {
+            let result = await fetch(`http://localhost:4000/user/reset-password/${token}/${uid}`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

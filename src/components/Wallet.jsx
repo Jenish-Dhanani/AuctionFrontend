@@ -10,7 +10,7 @@ const Wallet = ({ notify }) => {
     const userid = sessionStorage.getItem("user");
 
     useEffect(async () => {
-        await fetch(`https://auctionpointfrontend.herokuapp.com/wallet/${userid}`)
+        await fetch(`http://localhost:4000/wallet/${userid}`)
             .then((res) => res.json())
             .then((json) => {
                 setWallet(json.amount);
@@ -25,7 +25,7 @@ const Wallet = ({ notify }) => {
       }
       let amount = wallet + parseInt(document.getElementById("add-amount").value);
       let result = await fetch(
-        `https://auctionpointfrontend.herokuapp.com/wallet/updateWallet/${userid}`,
+        `http://localhost:4000/wallet/updateWallet/${userid}`,
         {
           method: "PUT",
           headers: {
@@ -48,7 +48,7 @@ const Wallet = ({ notify }) => {
       } else {
         let amount = wallet - amt;
         let result = await fetch(
-          `https://auctionpointfrontend.herokuapp.com/wallet/updateWallet/${userid}`,
+          `http://localhost:4000/wallet/updateWallet/${userid}`,
           {
             method: "PUT",
             headers: {

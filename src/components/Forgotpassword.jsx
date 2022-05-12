@@ -34,7 +34,7 @@ function Forgotpassword({notify}) {
             let data = {
                 email:values.email
             }
-            let result = await fetch("https://auctionpointfrontend.herokuapp.com/user/forgot-password", {
+            let result = await fetch("http://localhost:4000/user/forgot-password", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
