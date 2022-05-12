@@ -24,7 +24,7 @@ const FeedBack = ()=>{
 
         let item = { userId, date, comments };
 
-        let result = await fetch("http://localhost:4000/feedback/add_feedback", {
+        let result = await fetch("https://auctionpointfrontend.herokuapp.com/feedback/add_feedback", {
             method: 'POST',
             body: JSON.stringify(item),
             headers: {

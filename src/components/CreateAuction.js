@@ -94,7 +94,7 @@ const CreateAuction = ({notify}) => {
             formData.append("startDate",product.startdate);
             formData.append("endDate",product.enddate);
 
-            let result = await fetch("http://localhost:4000/auction/add-product", {
+            let result = await fetch("https://auctionpointfrontend.herokuapp.com/auction/add-product", {
             method: 'POST',
             headers: {
                 "Accept": "application/json"

@@ -21,7 +21,7 @@ const BidProduct = ({ notify }) => {
     if (params) {
       let userId;
       async function fetchData() {
-        await fetch(`http://localhost:4000/Auction/getBid/${params.id}`)
+        await fetch(`https://auctionpointfrontend.herokuapp.com/Auction/getBid/${params.id}`)
           .then((res) => res.json())
           .then((json) => {
             userId = json.userId;
@@ -31,19 +31,19 @@ const BidProduct = ({ notify }) => {
             // }
           });
         // console.log(bidProduct?.userId);
-        await fetch(`http://localhost:4000/user/${userId}`)
+        await fetch(`https://auctionpointfrontend.herokuapp.com/user/${userId}`)
           .then((res) => res.json())
           .then((json) => {
             setSeller(json.firstName + " " + json.lastName);
           });
 
-        await fetch(`http://localhost:4000/user/${uid}`)
+        await fetch(`https://auctionpointfrontend.herokuapp.com/user/${uid}`)
           .then((res) => res.json())
           .then((json) => {
             setUser(json);
           });
 
-        await fetch(`http://localhost:4000/wallet/${uid}`)
+        await fetch(`https://auctionpointfrontend.herokuapp.com/wallet/${uid}`)
           .then((res) => res.json())
           .then((json) => {
             setBalance(json.amount);
@@ -64,7 +64,7 @@ const BidProduct = ({ notify }) => {
     if (Object.keys(errs).length === 0) {
       ///bidProduct/:id
       let result = await fetch(
-        `http://localhost:4000/auction/bidProduct/${params.id}`,
+        `https://auctionpointfrontend.herokuapp.com/auction/bidProduct/${params.id}`,
         {
           method: "PUT",
           headers: {
@@ -154,7 +154,7 @@ const BidProduct = ({ notify }) => {
                       {bidProduct.productImage.map((item, index) => {
                         return (
                           <img
-                            src={"http://localhost:4000/uploads/" + item}
+                            src={"https://auctionpointfrontend.herokuapp.com/uploads/" + item}
                             key={index}
                             alt=""
                             className="img-fluid rounded-3"
@@ -165,7 +165,7 @@ const BidProduct = ({ notify }) => {
                   ) : (
                     <img
                       src={
-                        "http://localhost:4000/uploads/" +
+                        "https://auctionpointfrontend.herokuapp.com/uploads/" +
                         bidProduct.productImage[0]
                       }
                       alt=""
