@@ -29,7 +29,7 @@ const UserProfile = () => {
     useEffect(() => {
         // var arr = [];
         async function fetchData() {
-            await fetch("https://auctionpointfrontend.herokuapp.com/user/" + userid)
+            await fetch("https://auctionpointbackend.herokuapp.com/user/" + userid)
                 .then((res) => res.json())
                 .then((json) => {
                     setUserData(json);
@@ -37,19 +37,19 @@ const UserProfile = () => {
                     //console.log(json);
                 });
 
-            await fetch("https://auctionpointfrontend.herokuapp.com/auction/" + userid)
+            await fetch("https://auctionpointbackend.herokuapp.com/auction/" + userid)
                 .then((res) => res.json())
                 .then((json) => {
                     setUserAuction(json);
                 });
 
 
-                await fetch("https://auctionpointfrontend.herokuapp.com/transaction/get_transaction/"+userid)
+                await fetch("https://auctionpointbackend.herokuapp.com/transaction/get_transaction/"+userid)
                 .then((res) => res.json())
                 .then(async (json) => {
                     for (let item of json) {
 
-                        let result = await fetch(`https://auctionpointfrontend.herokuapp.com/auction/getBid/${item.auctionId}`)
+                        let result = await fetch(`https://auctionpointbackend.herokuapp.com/auction/getBid/${item.auctionId}`)
 
                         result = result.json().then((res)=>{
                             if (res !== null) setWonAuction([...wonAuction,res])
@@ -80,7 +80,7 @@ const UserProfile = () => {
         formData.append("avtar", profile_pic); // appending every file to formdata
 
         let result = await fetch(
-            "https://auctionpointfrontend.herokuapp.com/fileApi/uploadFile/" + userid,
+            "https://auctionpointbackend.herokuapp.com/fileApi/uploadFile/" + userid,
             {
                 method: "PUT",
                 headers: {
@@ -114,7 +114,7 @@ const UserProfile = () => {
 
             let item = { firstName, address, mobileNumber, email, password };
             let result = await fetch(
-                "https://auctionpointfrontend.herokuapp.com/user/updateUser/" + userid,
+                "https://auctionpointbackend.herokuapp.com/user/updateUser/" + userid,
                 {
                     method: "PUT",
                     body: JSON.stringify(item),
@@ -137,7 +137,7 @@ const UserProfile = () => {
 
             let item = { firstName, address, mobileNumber, email };
             let result = await fetch(
-                "https://auctionpointfrontend.herokuapp.com/user/updateUser/" + userid,
+                "https://auctionpointbackend.herokuapp.com/user/updateUser/" + userid,
                 {
                     method: "PUT",
                     body: JSON.stringify(item),
@@ -178,7 +178,7 @@ const UserProfile = () => {
                                             <img
                                                 src={
                                                     userData.avtar &&
-                                                    "https://auctionpointfrontend.herokuapp.com/uploads/" +
+                                                    "https://auctionpointbackend.herokuapp.com/uploads/" +
                                                         userData.avtar
                                                 }
                                                 className="rounded-circle"

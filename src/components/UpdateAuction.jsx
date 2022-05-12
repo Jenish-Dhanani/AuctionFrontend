@@ -9,7 +9,7 @@ const UpdateAuction = () => {
     let {id:auctionId} = useParams()
 
     useEffect(async ()=>{
-        let result = await fetch(`https://auctionpointfrontend.herokuapp.com/auction/getBid/${auctionId}`, {
+        let result = await fetch(`https://auctionpointbackend.herokuapp.com/auction/getBid/${auctionId}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

@@ -58,7 +58,7 @@ const Login = ({notify}) => {
         const password = event.target.password.value;
 
         let item = { email, password };
-        let result = await fetch("https://auctionpointfrontend.herokuapp.com/user/login", {
+        let result = await fetch("https://auctionpointbackend.herokuapp.com/user/login", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const Login = ({notify}) => {
             if(result.error === "No user found"){
                 /*setErrors({"email":"No email Found."})
                 notify("No email Found.")*/
-                let result2 = await fetch("https://auctionpointfrontend.herokuapp.com/admin/admin_login", {
+                let result2 = await fetch("https://auctionpointbackend.herokuapp.com/admin/admin_login", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const Login = ({notify}) => {
             }else if(result.error  === "Please Verify Your Account Before Logging In." || result ==="Please Verify Your Account Before Logging In."){
                 notify("Please Verify Your Account Before Logging In.")
             }else if(result.error  === "Please Verify Your Account Before Logging In."){
-                let result2 = await fetch("https://auctionpointfrontend.herokuapp.com/admin/admin_login", {
+                let result2 = await fetch("https://auctionpointbackend.herokuapp.com/admin/admin_login", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",

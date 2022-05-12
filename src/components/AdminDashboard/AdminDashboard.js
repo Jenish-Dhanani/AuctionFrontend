@@ -12,7 +12,7 @@ const AdminDashboard = () => {
 
   async function fetchData(){
     await fetch(
-      "https://auctionpointfrontend.herokuapp.com/user/all")
+      "https://auctionpointbackend.herokuapp.com/user/all")
       .then((res) => res.json())
       .then((json) => {
         setUserList(json)
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
       });
 
       await fetch(
-        "https://auctionpointfrontend.herokuapp.com/auction/all")
+        "https://auctionpointbackend.herokuapp.com/auction/all")
         .then((res) => res.json())
         .then((json) => {
           setProductList(json)
