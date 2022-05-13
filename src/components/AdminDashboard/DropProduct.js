@@ -16,7 +16,7 @@ const DropProduct = () => {
 
   async function fetchData(){
     await fetch(
-      "http://localhost:4000/auction/all")
+      "https://auctionpointfrontend.herokuapp.com/auction/all")
       .then((res) => res.json())
       .then((json) => {
         setProductList(json)
@@ -32,7 +32,7 @@ const DropProduct = () => {
   function handleDelete(user_id, e) {
     e.preventDefault();
     async function deletePost() {
-     await fetch("http://localhost:4000/auction/deleteAuction/"+user_id,
+     await fetch("https://auctionpointfrontend.herokuapp.com/auction/deleteAuction/"+user_id,
                { method: 'DELETE' });
       toast.success("User deleted successfully");
       //toast error
