@@ -9,12 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const DropUser = () => {
 
+  document.title = "Admin - AuctionPoint.com"
   const [userList, setUserList] = useState([])
   var row_count = 0;
 
   async function fetchData(){
     await fetch(
-      "https://auctionpointbackend.herokuapp.com/user/all")
+      "http://localhost:4000/user/all")
       .then((res) => res.json())
       .then((json) => {
         setUserList(json)
@@ -28,7 +29,7 @@ export const DropUser = () => {
   function handleDelete(user_id, e) {
      e.preventDefault();
      async function deletePost() {
-      await fetch("https://auctionpointbackend.herokuapp.com/user/deleteUser/"+user_id,
+      await fetch("http://localhost:4000/user/deleteUser/"+user_id,
                 { method: 'DELETE' })
                 .then(async response =>{
                   if(!response.ok)

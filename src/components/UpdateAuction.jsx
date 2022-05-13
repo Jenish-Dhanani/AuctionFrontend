@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from "./Footer"
 
-const UpdateAuction = () => {
+const UpdateAuction = ({notify}) => {
+    document.title = "Update Auction - AuctionPoint.com"
     var id=sessionStorage.getItem("user");
     let {id:auctionId} = useParams()
 
     useEffect(async ()=>{
-        let result = await fetch(`https://auctionpointbackend.herokuapp.com/auction/getBid/${auctionId}`, {
+        let result = await fetch(`http://localhost:4000/auction/getBid/${auctionId}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -27,6 +28,7 @@ const UpdateAuction = () => {
                 startdate:result.startDate,
                 enddate:result.endDate
             })
+            notify("Product Updated.")
         }
     },[])
 

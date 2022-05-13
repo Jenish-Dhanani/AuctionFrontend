@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from "./Footer"
 const CreateAuction = ({notify}) => {
+
+    document.title = "Create Auction - AuctionPoint.com"
+
     const navigate = useNavigate()
 
     var id=sessionStorage.getItem("user");
@@ -94,7 +97,7 @@ const CreateAuction = ({notify}) => {
             formData.append("startDate",product.startdate);
             formData.append("endDate",product.enddate);
 
-            let result = await fetch("https://auctionpointbackend.herokuapp.com/auction/add-product", {
+            let result = await fetch("http://localhost:4000/auction/add-product", {
             method: 'POST',
             headers: {
                 "Accept": "application/json"

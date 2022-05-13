@@ -10,11 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const DropProduct = () => {
 
+  document.title = "Admin - AuctionPoint.com"
+
   const [productsList, setProductList] = useState([]);
 
   async function fetchData(){
     await fetch(
-      "https://auctionpointbackend.herokuapp.com/auction/all")
+      "http://localhost:4000/auction/all")
       .then((res) => res.json())
       .then((json) => {
         setProductList(json)
@@ -30,7 +32,7 @@ const DropProduct = () => {
   function handleDelete(user_id, e) {
     e.preventDefault();
     async function deletePost() {
-     await fetch("https://auctionpointbackend.herokuapp.com/auction/deleteAuction/"+user_id,
+     await fetch("http://localhost:4000/auction/deleteAuction/"+user_id,
                { method: 'DELETE' });
       toast.success("User deleted successfully");
       //toast error

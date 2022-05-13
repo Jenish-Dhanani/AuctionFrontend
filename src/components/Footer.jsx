@@ -39,6 +39,20 @@ const Footer = () => {
                 <p>
                   <Link className="text-reset" to="/Aboutus">About Us</Link>
                 </p>
+
+                <h6 className="text-uppercase fw-bold mb-4">
+                  Services
+                </h6>
+
+                <p>
+                  <Link className="text-reset" to="/register">Register</Link>
+                </p>
+                <p>
+                  <Link className="text-reset" to="/login">Login</Link>
+                </p>
+                <p>
+                  <Link className="text-reset" to="/createauction">Submit a Bid</Link>
+                </p>
               </div>
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <h6 className="text-uppercase fw-bold mb-4">

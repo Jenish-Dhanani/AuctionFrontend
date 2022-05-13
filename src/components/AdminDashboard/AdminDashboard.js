@@ -4,6 +4,8 @@ import "./AdminDashboard.css"
 
 const AdminDashboard = () => {
 
+  document.title = "Admin - AuctionPoint.com"
+
   const [userList, setUserList] = useState([])
   const [user_count, setUserCount] = useState([])
 
@@ -12,7 +14,7 @@ const AdminDashboard = () => {
 
   async function fetchData(){
     await fetch(
-      "https://auctionpointbackend.herokuapp.com/user/all")
+      "http://localhost:4000/user/all")
       .then((res) => res.json())
       .then((json) => {
         setUserList(json)
@@ -21,7 +23,7 @@ const AdminDashboard = () => {
       });
 
       await fetch(
-        "https://auctionpointbackend.herokuapp.com/auction/all")
+        "http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
           setProductList(json)

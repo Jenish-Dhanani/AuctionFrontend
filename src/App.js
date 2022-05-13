@@ -44,9 +44,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/feedback' element={<FeedBack/>} />
         <Route path='/Aboutus' element={<Aboutus/>} />
-        {/* <Route path='/aboutus' element={<Aboutus/>} /> */}
         <Route path='/register' element={<Register notify={notify}/>} />
         <Route path='/login' element={<Login notify={notify}/>} />
         <Route path='/contactus' element={<Contact/>}/>
@@ -59,12 +57,11 @@ function App() {
         </Route>
 
         <Route element={<PrivateRouter/>}>
-            <Route path='/home' element={<Products notify={notify} countdownTimestampMs={1659983662000}/>} />
-            {/* <Route path='/product/:id' exact element={<BidPage />} /> */}
+            <Route path='/feedback' element={<FeedBack notify={notify}/>} />
+            <Route path='/home' element={<Products notify={notify}/>} />
             <Route path='/product/:id' exact element={<BidProduct notify={notify} />} />
             <Route path='/createauction' element={<CreateAuction notify={notify}/>} />
-            <Route path='/product/update/:id' element={<UpdateAuction/>} />
-            {/* <Route path='/profile' element={<Profile/>} /> */}
+            <Route path='/product/update/:id' element={<UpdateAuction notify={notify}/>} />
             <Route path='/profile' element={<UserProfile/>}/>
             <Route path='/wallet' element={<Wallet notify={notify} />} />
         </Route>
@@ -73,7 +70,7 @@ function App() {
         <Route path="*" element={<PageNotFound/>}/>
         <Route path="/user/verify-account/:token/:uid" element={<VerifyUser notify={notify}/>} />
       </Routes>
-      <ToastContainer autoClose={5000} />
+      <ToastContainer autoClose={5000} pauseOnHover={true} />
     </Router>
   );
 }
