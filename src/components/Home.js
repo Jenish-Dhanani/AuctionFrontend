@@ -10,6 +10,7 @@ import Testimonials from './Testimonials/Testimonials';
 
 
 const Home = () => {
+  document.title = "AuctionPoint.com"
   const [isLoading, setIsLoading] = useState(true);
   const [onGoingAuctions, setOngoingAuctions] = useState([]);
   const [upcomingAuctions, setUpcomingAuctions] = useState([]);
@@ -18,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("https://auctionpointbackend.herokuapp.com/auction/all")
+      await fetch("http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
           if (json === undefined) {
@@ -70,7 +71,7 @@ const Home = () => {
       <Header/>
       {/* {timerComponents.length ? timerComponents : <span>Time's up!</span>} */}
 
-      <h1 className="text-center my-4">
+      <h1 className="text-center my-4" id="on-going-section">
         On Going Auctions
       </h1>
       <ItemSlider products={onGoingAuctions} role="onGoingAuctions"/>

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
-import coupon from "../../src/images/coupon.png";
 import withdraw from "../../src/images/money-withdrawal.png";
 import purse from "../../src/images/purse.png";
 import Footer from "./Footer"
 const Wallet = ({ notify }) => {
+
+    document.title = "Wallet - AuctionPoint.com"
+
     const [wallet, setWallet] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const userid = sessionStorage.getItem("user");
 
     useEffect(async () => {
-        await fetch(`https://auctionpointbackend.herokuapp.com/wallet/${userid}`)
+        await fetch(`http://localhost:4000/wallet/${userid}`)
             .then((res) => res.json())
             .then((json) => {
                 setWallet(json.amount);
@@ -20,12 +22,13 @@ const Wallet = ({ notify }) => {
 
     const addMoney = async () => {
       //add money
-      if (parseInt(document.getElementById("add-amount").value) < 0) {
+      if (parseInt(document.getElementById("add-amount").value) < 0 || parseInt(document.getElementById("add-amount").value) === 0) {
         notify("Invalid amount");
+        return;
       }
       let amount = wallet + parseInt(document.getElementById("add-amount").value);
       let result = await fetch(
-        `https://auctionpointbackend.herokuapp.com/wallet/updateWallet/${userid}`,
+        `http://localhost:4000/wallet/updateWallet/${userid}`,
         {
           method: "PUT",
           headers: {
@@ -43,12 +46,16 @@ const Wallet = ({ notify }) => {
 
     const withdrawMoney = async () => {
       let amt = parseInt(document.getElementById("withdraw-amount").value);
+      if (amt < 0 || amt === 0) {
+        notify("Invalid amount");
+        return;
+      }
       if (amt > wallet) {
         notify("Insufficient Balance.");
       } else {
         let amount = wallet - amt;
         let result = await fetch(
-          `https://auctionpointbackend.herokuapp.com/wallet/updateWallet/${userid}`,
+          `http://localhost:4000/wallet/updateWallet/${userid}`,
           {
             method: "PUT",
             headers: {
@@ -74,16 +81,16 @@ const Wallet = ({ notify }) => {
                 </div>
             ) : (
                 <div className="container">
-                    <div class="card my-5">
-                        <h5 class="card-header">Your Wallet</h5>
-                        <div class="card-body">
+                    <div className="card my-5">
+                        <h5 className="card-header">Your Wallet</h5>
+                        <div className="card-body">
                             <h5
-                                class="card-title h1"
+                                className="card-title h1"
                                 style={{ fontSize: "5rem" }}
                             >
                                 ₹ {wallet}
                             </h5>
-                            <p class="card-text">
+                            <p className="card-text">
                                 This reflects your current balance of
                                 AuctionPoint wallet.
                             </p>
@@ -91,21 +98,21 @@ const Wallet = ({ notify }) => {
                     </div>
                     <div className="row">
                         <div className="col-sm">
-                            <div class="card my-1">
-                                <h5 class="card-header">Add Money</h5>
-                                <div class="card-body">
+                            <div className="card my-1">
+                                <h5 className="card-header">Add Money</h5>
+                                <div className="card-body">
                                     <h5
-                                        class="card-title h1"
+                                        className="card-title h1"
                                         style={{ fontSize: "5rem" }}
                                     >
                                         <img src={purse} alt="" height={100} />
                                     </h5>
-                                    <p class="card-text">
+                                    <p className="card-text">
                                         Add money to your wallet to start
                                         bidding on items you love.
                                     </p>
                                     <button
-                                        class="btn btn-primary"
+                                        className="btn btn-primary"
                                         data-bs-toggle="modal"
                                         data-bs-target="#AddMoney"
                                     >
@@ -115,11 +122,11 @@ const Wallet = ({ notify }) => {
                             </div>
                         </div>
                         <div className="col-sm">
-                            <div class="card my-1">
-                                <h5 class="card-header">Withdraw Money</h5>
-                                <div class="card-body">
+                            <div className="card my-1">
+                                <h5 className="card-header">Withdraw Money</h5>
+                                <div className="card-body">
                                     <h5
-                                        class="card-title h1"
+                                        className="card-title h1"
                                         style={{ fontSize: "5rem" }}
                                     >
                                         <img
@@ -128,12 +135,12 @@ const Wallet = ({ notify }) => {
                                             height={100}
                                         />
                                     </h5>
-                                    <p class="card-text">
+                                    <p className="card-text">
                                         Withdraw money from your AuctionPoint
                                         wallet quickly and hassle-free.{" "}
                                     </p>
                                     <button
-                                        class="btn btn-primary"
+                                        className="btn btn-primary"
                                         type="button"
                                         data-bs-toggle="modal"
                                         data-bs-target="#WithdrawMoney"

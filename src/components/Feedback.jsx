@@ -2,10 +2,7 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 import { useState } from "react";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-const FeedBack = ()=>{
+const FeedBack = ({notify})=>{
 
     const feedback = {
         userid: "",
@@ -24,7 +21,7 @@ const FeedBack = ()=>{
 
         let item = { userId, date, comments };
 
-        let result = await fetch("https://auctionpointbackend.herokuapp.com/feedback/add_feedback", {
+        let result = await fetch("http://localhost:4000/feedback/add_feedback", {
             method: 'POST',
             body: JSON.stringify(item),
             headers: {
@@ -35,6 +32,8 @@ const FeedBack = ()=>{
 
         result = await result.json()
         console.warn("result", result)
+        notify("Feedback added.")
+        document.getElementById("feedback-form").reset()
     }
 
         return (
@@ -49,7 +48,7 @@ const FeedBack = ()=>{
                                     <div className="col-sm-12 border border-bottom border-primary" />
                                 </div>
                             </div>
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} id="feedback-form"  name="Feedback">
                                 <div className="row">
                                     <div className="col-md-12 mt-2">
                                         <div className="">

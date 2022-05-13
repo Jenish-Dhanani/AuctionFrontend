@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 function Forgotpassword({notify}) {
+    document.title = "Forgot Password - AuctionPoint.com"
 
     const [values, setValues] = useState({email:""})
     const [errors, setErrors] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleChange = (event)=>{
         setValues({
@@ -30,11 +32,11 @@ function Forgotpassword({notify}) {
 
         // setDataIsCorrect(true)
         if(Object.keys(errs).length ===0 ){
-
+            setIsLoading(true)
             let data = {
                 email:values.email
             }
-            let result = await fetch("https://auctionpointbackend.herokuapp.com/user/forgot-password", {
+            let result = await fetch("http://localhost:4000/user/forgot-password", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -49,13 +51,17 @@ function Forgotpassword({notify}) {
             }else if(result === 'Mail Sent!'){
                 notify("Reset password mail Sent!")
             }
+            setIsLoading(false)
         }
     }
 
   return (
     <div>
         <Navigation/>
-        <div className='container'>
+        {isLoading?<div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+            <div className="spinner-border text-primary"></div>
+        </div>
+        :<div className='container'>
             <div className="w-100 d-flex justify-content-center p-5">
                 <div className="col-lg-5 col-md-10 d-flex flex-column justify-content-center align-items-center shadow p-5">
                     <img src="https://usa.afsglobal.org/SSO/SelfPasswordRecovery/images/send_reset_password.svg?v=3" alt="" />
@@ -72,7 +78,7 @@ function Forgotpassword({notify}) {
                     </form>
                 </div>
             </div>
-        </div>
+        </div>}
     </div>
   )
 }

@@ -5,6 +5,7 @@ import validator from 'validator'
 import auctionCover from '../../src/images/auction-cover.jpeg'
 
 const Register = ({notify}) => {
+    document.title = "Registration- AuctionPoint.com"
 
     const formInitialValue = {
         firstName: "",
@@ -55,7 +56,7 @@ const Register = ({notify}) => {
 
             let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
             // console.warn(item)
-            let result = await fetch("https://auctionpointbackend.herokuapp.com/user/register", {
+            let result = await fetch("http://localhost:4000/user/register", {
                 method: 'POST',
                 body: JSON.stringify(item),
                 headers: {
@@ -79,10 +80,11 @@ const Register = ({notify}) => {
         if (!values.lastName) {
             err.lastName = "Last name is required."
         }
+        if (!/\S+@\S+\.\S+/.test(values.email)) {
+            err.email = "Email is invalid"
+        }
         if (!values.email) {
             err.email = "Email is required."
-        } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-            err.email = "Email is invalid"
         }
 
         if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$/.test(values.password)) {
@@ -212,13 +214,13 @@ const Register = ({notify}) => {
                                     {errors.aadharNumber && <div className="alert-danger my-3 p-2">{errors.aadharNumber}
                                     </div>}
                                 </div>
-                                <div className="form-group my-3 text-start">
+                                {/* <div className="form-group my-3 text-start">
                                     <label className="form-control-placeholder">Profile Photo</label>
                                     <input type="file" accept="image/png, image/jpg, image/jpeg" className={`form-control ${errors.profile ? "is-invalid"
                                         : ""}`} name="profile" value={values.profile} onChange={handleChange} />
                                     {errors.profile && <div className="alert-danger my-3 p-2">{errors.profile}
                                     </div>}
-                                </div>
+                                </div> */}
                                 <div className="form-group my-3 text-start">
                                     <label className="form-control-placeholder">Gender</label>
                                     <br />

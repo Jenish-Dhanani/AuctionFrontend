@@ -6,6 +6,7 @@ import auctionCover from '../../src/images/auction-cover.jpeg'
 
 const Login = ({notify}) => {
 
+    document.title = "Login - AuctionPoint.com"
     const navigate = useNavigate();
     // useEffect(() => {
     // 	if (isAuthenticated()) {
@@ -58,7 +59,7 @@ const Login = ({notify}) => {
         const password = event.target.password.value;
 
         let item = { email, password };
-        let result = await fetch("https://auctionpointbackend.herokuapp.com/user/login", {
+        let result = await fetch("http://localhost:4000/user/login", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -72,7 +73,7 @@ const Login = ({notify}) => {
             if(result.error === "No user found"){
                 /*setErrors({"email":"No email Found."})
                 notify("No email Found.")*/
-                let result2 = await fetch("https://auctionpointbackend.herokuapp.com/admin/admin_login", {
+                let result2 = await fetch("http://localhost:4000/admin/admin_login", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -104,7 +105,7 @@ const Login = ({notify}) => {
             }else if(result.error  === "Please Verify Your Account Before Logging In." || result ==="Please Verify Your Account Before Logging In."){
                 notify("Please Verify Your Account Before Logging In.")
             }else if(result.error  === "Please Verify Your Account Before Logging In."){
-                let result2 = await fetch("https://auctionpointbackend.herokuapp.com/admin/admin_login", {
+                let result2 = await fetch("http://localhost:4000/admin/admin_login", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",

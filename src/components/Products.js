@@ -2,39 +2,17 @@ import { React, useState, useEffect } from "react";
 import Navigation from "./Navigation";
 import "./Products.css";
 import "./CountdownTimer";
-// import { getRemainingTimeUntilMsTimestamp } from './CountdownTimer';
 import Footer from "./Footer";
 import { CardGroup } from "./CardGroup";
-let userId = sessionStorage.getItem("user");
-// const defaultRemainingTime = {
-//     seconds: '00',
-//     minutes: '00',
-//     hours: '00',
-//     days: '00'
-// }
 
 const Products = ({ notify }) => {
+  document.title = "Auctions - AuctionPoint.com"
+
   const [isLoading, setIsLoading] = useState(true);
   const [myAuctions, setMyAuctions] = useState([]);
   const [upComingAuctions, setUpComingAuctions] = useState([]);
   const [onGoingAuctions, setOngoingAuctions] = useState([]);
   const [endedAuctions, setEndedAuctions] = useState([]);
-
-  // const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
-  // useEffect(() => {
-  //     const intervalId = setInterval(() => {
-  //         updateRemainingTime(countdownTimestampMs);
-  //     }, 1000);
-  //     return () => clearTimeout(intervalId);
-  // }, [countdownTimestampMs]);
-
-  // function updateRemainingTime(countdown) {
-  //     setRemainingTime(getRemainingTimeUntilMsTimestamp(countdown));
-  // }
 
   function getNumberOfDays(start, end) {
     const date1 = new Date(start);
@@ -54,7 +32,7 @@ const Products = ({ notify }) => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("https://auctionpointbackend.herokuapp.com/auction/all")
+      await fetch("http://localhost:4000/auction/all")
         .then((res) => res.json())
         .then((json) => {
           if (json === undefined) {
@@ -106,7 +84,7 @@ const Products = ({ notify }) => {
         alert("You can not delete this.");
     } else {
         setMyAuctions(myAuctions.filter((value) => value._id != product._id));
-        await fetch(`https://auctionpointbackend.herokuapp.com/auction/deleteAuction/${product._id}`,{
+        await fetch(`http://localhost:4000/auction/deleteAuction/${product._id}`,{
             method: 'DELETE',
             headers: {
                 "Accept": "application/json"

@@ -50,7 +50,7 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
       amount
     }
 
-    let result = await fetch("https://auctionpointbackend.herokuapp.com/transaction/add_transaction", {
+    let result = await fetch("http://localhost:4000/transaction/add_transaction", {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -59,8 +59,9 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
         body: JSON.stringify(data)
     });
     result = await result.json();
+    navigate('/feedback');
     notify("Transaction Done.")
-    window.location.reload()
+    // window.location.reload()
   }
 
   return (
@@ -69,22 +70,21 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
         {/* {startTimer} */}
         <div className="d-flex w-100 justify-content-center align-items-center">
             {/* <img className='img-fluid' src={`https://picsum.photos/500/500?random=${Math.random()*10}`} style={{width:"20rem", height:"15rem", objectFit:"cover"}} /> */}
-            <img className='img-fluid' src={ product?.productImage[0]?"https://auctionpointbackend.herokuapp.com/uploads/"+product?.productImage[0]:`https://picsum.photos/500/500?random=${Math.random()*10}`} style={{width:"20rem", height:"15rem", objectFit:"cover"}} />
+            <img className='img-fluid' src={ product?.productImage[0]?"http://localhost:4000/uploads/"+product?.productImage[0]:`https://picsum.photos/500/500?random=${Math.random()*10}`} style={{width:"20rem", height:"15rem", objectFit:"cover"}} />
         </div>
         {/* Title */}
-        <div className='d-flex align-items-center text-capitalize w-100 p-3 fw-bold text-break' style={{height:"80px"}}>
+        <div className='d-flex align-items-center text-capitalize w-100 px-3 h4 fw-bold text-break' style={{height:"80px"}}>
             {/* {product?<span>{product?.productName}</span>:<span>Sample product name</span> } */}
             {product?(product.productName.length > 60? product.productName.substring(0,60)+"..." :product.productName):"Sample product name"}
         </div>
-        <div className='d-flex align-items-center text-capitalize w-100 p-3 fw-lighter text-break' style={{height:"80px"}}>
+        <div className='d-flex align-items-center text-capitalize w-100 px-3 fw-lighter text-break' style={{height:"80px"}}>
             <span>{product?(product.productDescription.length > 60? product.productDescription.substring(0,60)+"..." :product.productDescription):"Sample product name"}</span>
         </div>
         {/* body */}
         <div className='w-100 p-3 d-flex flex-row justify-content-between align-items-center'>
             {/* time left */}
             <div className="d-flex flex-column">
-              {/* <span>Time Left</span> */}
-              <span>End Date:</span>
+              <span>End Date</span>
               <span className='fw-bold'>{(product?.endDate.substring(0,10))}</span>
               {/* <span className='text-uppercase text-secondary' style={{fontSize:"0.7em"}}>days hrs min sec</span> */}
             </div>
@@ -98,8 +98,8 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
             </div>
         </div>
         {/* action */}
-        {role==="onGoingAuctions" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-end align-items-center" >
-              <button className='btn btn-primary w-50' onClick={()=>{handleProductClick(product._id)}}>Bid Now</button>
+        {role==="onGoingAuctions" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-between align-items-center" >
+              <button className='btn btn-primary w-100' onClick={()=>{handleProductClick(product._id)}}>Bid Now</button>
         </div>}
         {role==="myAuction" && <div className="w-100 px-3 my-1 mb-3 d-flex flex-row justify-content-between align-items-center" >
               <button className='btn btn-danger' onClick={()=>handleOnDeleteBtnClick(product)}>Delete</button>

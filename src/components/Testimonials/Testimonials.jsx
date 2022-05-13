@@ -1,69 +1,57 @@
+import peril from "../../images/peril.jpeg"
+import jenish from '../../images/jenish.jpeg'
+import shail from '../../images/shail.jpeg'
+
 const Testimonials= ()=> {
 
     return (
     <>
-        <div className="bg-light p-5">
-        <h1 className="h-1 text-center mb-4"> Testimonials </h1>
-        <div id="Testimonial" className="carousel slide bg-dark" data-bs-ride="carousel">
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <div className="container d-flex flex-column text-white justify-content-center align-items-center py-4 gap-3 text-center">
-                    <img src={'https://picsum.photos/200/200?random='+Math.random()*10} style={{"width":"140px"}} className="rounded-3" />
-                        <h3>Shail Parekh</h3>
-                        <p>
-                        A nice and genuine platform where one can logically play against others to win
-                        the auction. I don't think luck has a major role here.
-                        I will definitely recommend everyone checkout OnlineAuction and to have the spirit of
-                        bidding.
-                        </p>
-                    </div>
-                </div>
+        <section>
+  <div className="row d-flex justify-content-center">
+    <div className="col-md-10 col-xl-8 text-center">
+      <h3 className="mb-4 h1">Testimonials</h3>
+    </div>
+  </div>
 
-                <div className="carousel-item">
-                    <div className="container d-flex flex-column text-white justify-content-center align-items-center py-4 gap-3 text-center">
-                        <img src={'https://picsum.photos/200/200?random='+Math.random()*10} style={{"width":"140px"}} className="rounded-3" />
+  <div className="row text-center">
+    <div className="col-md-4 mb-5 mb-md-0">
+      <div className="d-flex justify-content-center mb-4">
+        <img src={peril}
+          className="rounded-circle shadow-1-strong" width="150" height="150" />
+      </div>
+      <h5 className="mb-3">Peril Talaviya</h5>
+      <h6 className="text-primary mb-3">Web Developer</h6>
+      <p className="px-xl-3">
+        <i className="fas fa-quote-left pe-2"></i>An online auction also known as electronic auction or e-auction or eAuction is an auction which is held over the internet.
+      </p>
 
-                            <h3>Jenish Dhanani</h3>
-                            <p>
-                            OnlineAuction is a really unique platform to fulfill your dream. You can get what u want.
-                            With simple effort in less price.
-                            My strategy was just bided unique amount at the last moment so that no one can defeat u.
-                            </p>
+    </div>
+    <div className="col-md-4 mb-5 mb-md-0">
+      <div className="d-flex justify-content-center mb-4">
+        <img src={jenish}
+          className="rounded-circle shadow-1-strong" width="150" height="150" />
+      </div>
+      <h5 className="mb-3">Jenish Dhanani</h5>
+      <h6 className="text-primary mb-3">Web Designer</h6>
+      <p className="px-xl-3">
+        <i className="fas fa-quote-left pe-2"></i>Auctionpoint has introduced a completely new and best way of online auction.
+      </p>
 
-                    </div>
-                </div>
+    </div>
+    <div className="col-md-4 mb-0">
+      <div className="d-flex justify-content-center mb-4">
+        <img src={shail}
+          className="rounded-circle shadow-1-strong" width="150" height="150" />
+      </div>
+      <h5 className="mb-3">Shail Parekh</h5>
+      <h6 className="text-primary mb-3">Web Designer</h6>
+      <p className="px-xl-3">
+        <i className="fas fa-quote-left pe-2"></i> Auctionpoint.com is a new exciting auction website where you can win branded factory sealed new products.
+      </p>
 
-                <div className="carousel-item">
-                    <div className="container d-flex flex-column text-white justify-content-center align-items-center py-4 gap-3 text-center">
-                    <img src={'https://picsum.photos/200/200?random='+Math.random()*10} style={{"width":"140px"}} className="rounded-3" />
-                        <h3>Urja Gandhi</h3>
-                        <p>
-                        The best auction website I have never seen before
-                        Just buy bids bid wisely maximum at last few minutes.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="carousel-item">
-                    <div className="container d-flex flex-column text-white justify-content-center align-items-center py-4 gap-3 text-center">
-                    <img src={'https://picsum.photos/200/200?random='+Math.random()*10} style={{"width":"140px"}} className="rounded-3" />
-                        <h3>Richa Parikh</h3>
-                        <p>
-                        I played first time and won by luckly. Now I got it how it work. So simple and easy website.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#Testimonial" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true" />
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#Testimonial" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true" />
-                <span className="visually-hidden">Next</span>
-            </button>
-        </div>
-        </div>
+    </div>
+  </div>
+</section>
     </>
     );
 }

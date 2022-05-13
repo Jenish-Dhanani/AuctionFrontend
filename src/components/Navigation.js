@@ -5,17 +5,6 @@ import navLogo from "../../src/images/letter-a.png";
 const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState();
-  const [pathName, setPathName] = useState();
-
-  useEffect(() => {
-    setPathName(location.pathname);
-    setTimeout(() => {
-      if (sessionStorage.getItem("user")) {
-        setIsLoggedIn(true);
-      }
-    }, 0);
-  }, []);
 
   const LogOut = () => {
     sessionStorage.removeItem("user");
@@ -24,7 +13,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-5">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-5 sticky-top">
         <div className="container-fluid">
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img
@@ -48,37 +37,62 @@ const Navigation = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse ms-auto" id="navbarNav">
-            {isLoggedIn && pathName !== "/login" && pathName !== "/register" ? (
+            {sessionStorage.getItem('user') && location.pathname !== "/login" && location.pathname !== "/register" ? (
               <ul className="navbar-nav ms-auto">
                 {/* {(!isLogin || pathname=='/sign-in' || pathname=='/sign-up') &&<> */}
                 <li className="nav-item">
-                  <Link className="nav-link px-4" to="/home">
+                  <Link className="nav-link px-3" to="/aboutus">
+                    About Us
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link px-3" to="/contactus">
+                    Contact Us
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link px-3" to="/home">
                     Auctions
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link px-4" to="/wallet">
+                  <Link className="nav-link px-3" to="/wallet">
                     Wallet
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link px-4" to="/createauction">
+                  <Link className="nav-link px-3" to="/createauction">
                     Create Auction
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link px-4" to="/profile">
+                  <Link className="nav-link px-3" to="/profile">
                     Profile
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <div className="btn btn-primary px-4 mx-4" onClick={LogOut}>
+                  <div className="btn btn-primary px-3" onClick={LogOut}>
                     Log Out
                   </div>
                 </li>
               </ul>
             ) : (
               <ul className="navbar-nav ms-auto">
+                <li className="nav-item">
+                  <Link className="nav-link px-4" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link px-4" to="/aboutus">
+                    About Us
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link px-4" to="/contactus">
+                    Contact Us
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link className="btn btn-outline-light px-5" to="/login">
                     Sign In

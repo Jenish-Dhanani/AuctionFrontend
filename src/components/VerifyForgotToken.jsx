@@ -49,7 +49,7 @@ const VerifyForgotToken = ({notify})=>{
         if(Object.keys(errs).length===0){
             //call backend api
             let item = { newpassword:values.password };
-            let result = await fetch(`https://auctionpointbackend.herokuapp.com/user/reset-password/${token}/${uid}`, {
+            let result = await fetch(`http://localhost:4000/user/reset-password/${token}/${uid}`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -58,7 +58,6 @@ const VerifyForgotToken = ({notify})=>{
                 body: JSON.stringify(item)
             });
             result = await result.json();
-            // console.log(result)
             if(result === 'password changed successfully'){
                 notify('password changed successfully')
                 navigate('/login')
@@ -66,15 +65,6 @@ const VerifyForgotToken = ({notify})=>{
         }else{
             console.log(errs)
         }
-    }
-    function replaceJSX(str, find, replace) {
-        let parts = str.split(find);
-        let result = []
-        for(let i = 0, result = []; i < parts.length; i++) {
-            result.push(parts[i]);
-            result.push(replace);
-        }
-        return result;
     }
 
     return (<>
