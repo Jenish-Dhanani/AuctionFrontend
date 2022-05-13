@@ -50,7 +50,7 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
       amount
     }
 
-    let result = await fetch("https://auctionpointfrontend.herokuapp.com/transaction/add_transaction", {
+    let result = await fetch("https://auctionpointbackend.herokuapp.com/transaction/add_transaction", {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const ProductCard = ({product,role, handleOnDeleteBtnClick,notify}) => {
         {/* {startTimer} */}
         <div className="d-flex w-100 justify-content-center align-items-center">
             {/* <img className='img-fluid' src={`https://picsum.photos/500/500?random=${Math.random()*10}`} style={{width:"20rem", height:"15rem", objectFit:"cover"}} /> */}
-            <img className='img-fluid' src={ product?.productImage[0]?"https://auctionpointfrontend.herokuapp.com/uploads/"+product?.productImage[0]:`https://picsum.photos/500/500?random=${Math.random()*10}`} style={{width:"20rem", height:"15rem", objectFit:"cover"}} />
+            <img className='img-fluid' src={ product?.productImage[0]?"https://auctionpointbackend.herokuapp.com/uploads/"+product?.productImage[0]:`https://picsum.photos/500/500?random=${Math.random()*10}`} style={{width:"20rem", height:"15rem", objectFit:"cover"}} />
         </div>
         {/* Title */}
         <div className='d-flex align-items-center text-capitalize w-100 px-3 h4 fw-bold text-break' style={{height:"80px"}}>

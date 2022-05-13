@@ -15,7 +15,7 @@ export const DropUser = () => {
 
   async function fetchData(){
     await fetch(
-      "https://auctionpointfrontend.herokuapp.com/user/all")
+      "https://auctionpointbackend.herokuapp.com/user/all")
       .then((res) => res.json())
       .then((json) => {
         setUserList(json)
@@ -29,7 +29,7 @@ export const DropUser = () => {
   function handleDelete(user_id, e) {
      e.preventDefault();
      async function deletePost() {
-      await fetch("https://auctionpointfrontend.herokuapp.com/user/deleteUser/"+user_id,
+      await fetch("https://auctionpointbackend.herokuapp.com/user/deleteUser/"+user_id,
                 { method: 'DELETE' })
                 .then(async response =>{
                   if(!response.ok)
