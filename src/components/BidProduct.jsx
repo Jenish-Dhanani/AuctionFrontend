@@ -125,7 +125,7 @@ const BidProduct = ({ notify }) => {
       errors.balance = "Insufficent balance!";
       notify("Insufficent balance! Please add some balance to wallet");
     }
-    else if(bidProduct.Bid.bidInfo[0].bidderId === uid){
+    else if(bidProduct.Bid.bidInfo[0] &&bidProduct?.Bid?.bidInfo[0]?.bidderId === uid){
       errors.bidValue = "You already own the highest bid."
       notify("You already own the highest bid.")
     }
