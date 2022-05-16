@@ -56,7 +56,7 @@ const Register = ({notify}) => {
 
             let item = { firstName, lastName, dob, email, mobileNumber, password, aadharNumber, address, gender }
             // console.warn(item)
-            let result = await fetch("http://localhost:4000/user/register", {
+            let result = await fetch("https://auctionpointbackend.herokuapp.com/user/register", {
                 method: 'POST',
                 body: JSON.stringify(item),
                 headers: {

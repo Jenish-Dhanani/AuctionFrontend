@@ -32,7 +32,7 @@ const Products = ({ notify }) => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("http://localhost:4000/auction/all")
+      await fetch("https://auctionpointbackend.herokuapp.com/auction/all")
         .then((res) => res.json())
         .then((json) => {
           if (json === undefined) {
@@ -84,7 +84,7 @@ const Products = ({ notify }) => {
         alert("You can not delete this.");
     } else {
         setMyAuctions(myAuctions.filter((value) => value._id != product._id));
-        await fetch(`http://localhost:4000/auction/deleteAuction/${product._id}`,{
+        await fetch(`https://auctionpointbackend.herokuapp.com/auction/deleteAuction/${product._id}`,{
             method: 'DELETE',
             headers: {
                 "Accept": "application/json"
